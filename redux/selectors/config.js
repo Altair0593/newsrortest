@@ -14,6 +14,14 @@ export const getDatePickerButton = createSelector(getConfigStore,
   config => config.configData.datePickerButton
 );
 
+export const getHeaderModalButton = createSelector(getConfigStore,
+    config => config.configData.headerModalButton
+);
+
+export const getHeaderModalText = createSelector(getConfigStore,
+  config => config.configData.headerModalText
+);
+
 export const getLanguagePickerButton = createSelector(getConfigStore,
   config => config.configData.languagePickerButtons
 );

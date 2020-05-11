@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import Layout from '../components/Layout/Layout';
 import { getConfigStore } from '~/redux/selectors/config.js';
 import createStore from '~/redux/store.js';
+import 'semantic-ui-css/semantic.min.css';
 
 import messages from '../managers/locales/message';
 const cache = createIntlCache();

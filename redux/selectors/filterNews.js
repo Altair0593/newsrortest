@@ -17,3 +17,11 @@ export const getLanguage = createSelector(getFilterNews,
 export const getCategory = createSelector(getFilterNews,
   filterNews => filterNews.category
 );
+
+export const getActivePage = createSelector(getFilterNews,
+  filterNews => filterNews.defaultActivePage,
+);
+
+export const getTotalPages = createSelector(getFilterNews,
+  filterNews => filterNews.totalPages,
+);

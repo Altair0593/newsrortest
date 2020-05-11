@@ -1,4 +1,4 @@
-import { getFilterNews, getDateFrom, getDateTo, getLanguage, getCategory } from '../filterNews.js';
+import { getActivePage, getTotalPages ,getFilterNews, getDateFrom, getDateTo, getLanguage, getCategory } from '../filterNews.js';
 
 describe('testFilterNewsSelectors', () => {
   let state = { filterNews: null };
@@ -9,6 +9,8 @@ describe('testFilterNewsSelectors', () => {
       dateTo: 'dateTo',
       language: 'language',
       category: 'category',
+      defaultActivePage: 'defaultActivePAge',
+      totalPages: 'totalPages',
     };
   });
 
@@ -43,6 +45,25 @@ describe('testFilterNewsSelectors', () => {
   describe('getCategory', () => {
     it('getCategory work correct', () => {
       expect(getCategory.resultFunc(state.filterNews)).toEqual(state.filterNews.category);
+    });
+  });
+
+  describe('getActivePage', () => {
+    it('getActivePage work correct', () => {
+      expect(getActivePage(state)).toEqual(state.filterNews.defaultActivePage);
+    });
+
+    it('getActivePage failed with incorrect data', () => {
+      expect(getActivePage(state)).not.toEqual(state.state);
+    });
+  });
+  describe('getTotalPages', () => {
+    it('getTotalPages work correct', () => {
+      expect(getTotalPages(state)).toEqual(state.filterNews.totalPages);
+    });
+
+    it('getTotalPages failed with incorrect data', () => {
+      expect(getTotalPages(state)).not.toEqual(state.state);
     });
   });
 });

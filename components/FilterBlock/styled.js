@@ -1,15 +1,15 @@
 import styled from 'styled-components';
+import { newsGrid } from '../Content/styled.js';
 
 const elContainerWidthDefault = '100%';
 const elContainerBlockWidthDefault = '20%';
 const elContainerMarginDefault = '0';
 
 export const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+  ${newsGrid}
   padding: 10px;
   box-shadow: 0 1px 2px #ccc;
+
 `;
 
 export const ElementContainer = styled.div`
@@ -18,7 +18,6 @@ export const ElementContainer = styled.div`
 `;
 
 export const ContainerBlock = styled.div`
-  max-width: 750px;
   display: flex;
   justify-content: space-around;
 `;

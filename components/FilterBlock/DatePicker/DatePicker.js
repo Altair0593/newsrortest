@@ -28,7 +28,7 @@ const DatePicker = ({ dateFrom, dateTo, datePickerInputs, datePickerButton }) =>
         onChange={el.onChangeCallback === 'changeDateFilter' && changeDateFilter}
       />,
     )}
-    <ElementContainerBlock elContainerBlockWidth={'25%'}>
+    <ElementContainerBlock>
       <Button
         primary
         content={intl.formatMessage({ id: datePickerButton.content })}

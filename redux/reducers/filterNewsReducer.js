@@ -6,6 +6,8 @@ export const initialState = {
   dateTo: moment().format('DD-MM-YYYY'),
   language: 'en',
   category: 'bitcoin',
+  defaultActivePage: 1,
+  totalPages: 10,
 };
 
 export const filterNewsReducer = (state = initialState, action) => {

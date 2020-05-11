@@ -6,7 +6,7 @@ import { Container, ElementContainer } from './styled.js';
 
 const FilterBlock = ({ languagePickerButtons, dateFrom, dateTo, datePickerInputs, datePickerButton }) => {
   return <Container>
-    <ElementContainer elContainerWidth={'100%'} elContainerMargin={'10px 0'}>
+    <ElementContainer elContainerWidth={'60%'} elContainerMargin={'10px 0'}>
       <DatePicker
         dateFrom={dateFrom}
         dateTo={dateTo}

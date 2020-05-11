@@ -1,8 +1,10 @@
 import Head from 'next/head';
+import PropTypes from 'prop-types';
 
-export default ({ children }) => 
+const Layout = ({ children, title = 'News' }) =>
   <div>
-    <Head>      
+    <Head>
+      <title>{title}</title>
       <meta charSet='utf-8' />
       <meta name='viewport' content='initial-scale=1.0, width=device-width' />
     </Head>
@@ -11,3 +13,9 @@ export default ({ children }) =>
     <footer/>
   </div>;
 
+Layout.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.object,
+};
+
+export default Layout;
