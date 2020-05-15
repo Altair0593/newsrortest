@@ -1,4 +1,4 @@
-import { locale } from '../locales.js';
+import { locale } from '../locales';
 
 export default {
   [locale.FRENCH]: {

@@ -1,50 +1,29 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import NewsBlock from './components/NewsBlock/NewsBlock.js';
-import FilterBlock from '../FilterBlock/FilterBlock.js';
-import Pagination from './components/Pagination/Pagination.js';
-import Header from '../Header/Header.js';
-import { Container } from 'semantic-ui-react';
-import { ItemWrapper } from './styled.js';
+import { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
+import Header from './components/Header';
+import NewsBlock from './components/NewsBlock';
+import Pagination from './components/Pagination';
+import FilterBlock from './components/FilterBlock/FilterBlock';
+import { CustomNotify } from 'libs/CustomNotify/CustomNotify';
+import { MainWrapper, MainContainer } from './styled';
 
-const Content = ({ topics, languagePickerButtons, news, dateFrom, dateTo, datePickerInputs, datePickerButton, activePage, totalPages, headerModalButton, headerModalText }) => {
+const Content = () => {
+  const themeNews = useContext(ThemeContext).newsPage;
+
   return (
-    <Container>
-      <Header
-        topics={topics}
-        headerModalButton={headerModalButton}
-        headerModalText={headerModalText}
-      />
-      <ItemWrapper>
-        <FilterBlock
-          dateFrom={dateFrom}
-          dateTo={dateTo}
-          datePickerInputs={datePickerInputs}
-          datePickerButton={datePickerButton}
-          languagePickerButtons={languagePickerButtons}
-        />
-      </ItemWrapper>
-
-      <NewsBlock news={news} />
-      <ItemWrapper>
-        <Pagination activePage={activePage} totalPages={totalPages} fluid />
-      </ItemWrapper>
-    </Container>
+    <MainWrapper
+      flexDirection='column'
+      bgColorContainer={themeNews.mainBgColor}
+    >
+      <MainContainer>
+        <Header/>
+        <FilterBlock/>
+        <NewsBlock/>
+        <Pagination/>
+        <CustomNotify/>
+      </MainContainer>
+    </MainWrapper>
   );
-};
-
-Content.propTypes = {
-  activePage: PropTypes.number,
-  totalPages: PropTypes.number,
-  topics: PropTypes.array.isRequired,
-  headerModalButton: PropTypes.object.isRequired,
-  headerModalText: PropTypes.object.isRequired,
-  news: PropTypes.array.isRequired,
-  dateFrom: PropTypes.string.isRequired,
-  dateTo: PropTypes.string.isRequired,
-  datePickerInputs: PropTypes.array.isRequired,
-  datePickerButton: PropTypes.object.isRequired,
-  languagePickerButtons: PropTypes.array.isRequired,
 };
 
 export default Content;

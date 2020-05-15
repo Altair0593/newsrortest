@@ -1,4 +1,4 @@
-import { locale } from '../locales.js';
+import { locale } from '../locales';
 
 export default {
   [locale.ENGLISH]: {
@@ -13,6 +13,6 @@ export default {
     deutschland: 'Deutschland',
     france: 'France',
     spain: 'Spain',
-    arabian: 'Arabian',
+    russian: 'Russian',
   },
 };

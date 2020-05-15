@@ -2,26 +2,37 @@ import { createSelector } from 'reselect';
 
 export const getConfigStore = state => state.config;
 
-export const getLocale = createSelector(getConfigStore,
+export const getLocale = createSelector(
+  getConfigStore,
   config => config.locale
 );
 
-export const getDatePickerInputs = createSelector(getConfigStore,
-  config => config.configData.datePickerInputs
+export const getConfigData = createSelector(
+  getConfigStore,
+  config => config.configData
 );
 
-export const getDatePickerButton = createSelector(getConfigStore,
-  config => config.configData.datePickerButton
+export const getDatePickerInputs = createSelector(
+  getConfigData,
+  configData => configData.datePickerInputs
 );
 
-export const getHeaderModalButton = createSelector(getConfigStore,
-    config => config.configData.headerModalButton
+export const getDatePickerButton = createSelector(
+  getConfigData,
+  configData => configData.datePickerButton
 );
 
-export const getHeaderModalText = createSelector(getConfigStore,
+export const getLanguagePickerButton = createSelector(
+  getConfigData,
+  configData => configData.languagePickerButtons
+);
+
+export const getHeaderModalButton = createSelector(
+  getConfigStore,
+  config => config.configData.headerModalButton
+);
+
+export const getHeaderModalText = createSelector(
+  getConfigStore,
   config => config.configData.headerModalText
-);
-
-export const getLanguagePickerButton = createSelector(getConfigStore,
-  config => config.configData.languagePickerButtons
 );

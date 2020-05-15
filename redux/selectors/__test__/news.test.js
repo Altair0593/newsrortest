@@ -1,4 +1,4 @@
-import { getNewsStore, getNews } from '../news.js';
+import { getNewsStore, getNews } from '../news';
 
 describe('getNewsStore', () => {
   let state;

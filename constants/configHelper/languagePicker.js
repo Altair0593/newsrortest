@@ -5,6 +5,7 @@ export const languagePickerButtons = [
     value: 'en',
     id: 'english',
     dataAt: 'data-at-english-language-button',
+    flag: 'gb',
   },
   {
     content: 'deutschland',
@@ -12,6 +13,7 @@ export const languagePickerButtons = [
     value: 'de',
     id: 'deutschland',
     dataAt: 'data-at-deutschland-language-button',
+    flag: 'de',
   },
   {
     content: 'france',
@@ -19,6 +21,7 @@ export const languagePickerButtons = [
     value: 'fr',
     id: 'france',
     dataAt: 'data-at-france-language-button',
+    flag: 'fr',
   },
   {
     content: 'spain',
@@ -26,12 +29,14 @@ export const languagePickerButtons = [
     value: 'es',
     id: 'spain',
     dataAt: 'data-at-spain-language-button',
+    flag: 'es',
   },
   {
-    content: 'arabian',
+    content: 'russian',
     onClickCallback: 'changeLanguage',
-    value: 'ar',
-    id: 'arabian',
-    dataAt: 'data-at-arabian-language-button',
+    value: 'ru',
+    id: 'russian',
+    dataAt: 'data-at-russian-language-button',
+    flag: 'ru',
   },
 ];

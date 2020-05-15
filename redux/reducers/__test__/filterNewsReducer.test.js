@@ -1,4 +1,5 @@
-import { filterNewsReducer } from '../filterNewsReducer.js';
+import { filterNewsReducer } from '../filterNewsReducer';
+import actionTypes from 'redux/actionsType/actionTypes';
 
 describe('filterNewsReducer', () => {
   let initialState;
@@ -13,22 +14,17 @@ describe('filterNewsReducer', () => {
   });
 
   it('filterNewsReducer with action.type PUT_DATE_IN_STORE and name dateTo', () => {
-    const action = { type: 'PUT_DATE_IN_STORE', payload: { name: 'dateFrom', date: 'date' } };
-    expect(filterNewsReducer(initialState, action)).toEqual({ ...initialState, dateFrom: 'date' });
-  });
-
-  it('filterNewsReducer action.type PUT_DATE_IN_STORE and name dateTo', () => {
-    const action = { type: 'PUT_DATE_IN_STORE', payload: { name: 'dateTo', date: 'date' } };
-    expect(filterNewsReducer(initialState, action)).toEqual({ ...initialState, dateTo: 'date' });
+    const action = { type: actionTypes.PUT_DATE_IN_STORE, payload: { dateFrom: 'dateFromState', dateTo: 'dateToState' } };
+    expect(filterNewsReducer(initialState, action)).toEqual({ ...initialState, ...action.payload });
   });
 
   it('filterNewsReducer action.type PUT_LANGUAGE_IN_STORE', () => {
-    const action = { type: 'PUT_LANGUAGE_IN_STORE', payload: 'payload' };
+    const action = { type: actionTypes.PUT_LANGUAGE_IN_STORE, payload: 'payload' };
     expect(filterNewsReducer(initialState, action)).toEqual({ ...initialState, language: 'payload' });
   });
 
   it('filterNewsReducer action.type PUT_CATEGORY_IN_STORE', () => {
-    const action = { type: 'PUT_CATEGORY_IN_STORE', payload: 'payload' };
+    const action = { type: actionTypes.PUT_CATEGORY_IN_STORE, payload: 'payload' };
     expect(filterNewsReducer(initialState, action)).toEqual({ ...initialState, category: 'payload' });
   });
 

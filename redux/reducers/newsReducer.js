@@ -1,8 +1,7 @@
-import actionTypes from '../actionsType/actionTypes.js';
-import config from '../../constants/config';
+import actionTypes from '../actionsType/actionTypes';
 
 export const initialState = {
-  newsData: config.mockNews,
+  newsData: [],
 };
 
 export const newsReducer = (state = initialState, action) => {
@@ -11,7 +10,7 @@ export const newsReducer = (state = initialState, action) => {
       return {
         ...state,
         newsData: action.payload,
-      };
+    };
     default:
       return state;
   }

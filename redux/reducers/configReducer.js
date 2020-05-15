@@ -1,5 +1,5 @@
-import actionTypes from '../actionsType/actionTypes.js';
-import configData from '../../constants/config.js';
+import actionTypes from '../actionsType/actionTypes';
+import configData from 'constants/config';
 
 const { defaultLocale } = configData;
 

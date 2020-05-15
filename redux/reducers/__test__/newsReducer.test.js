@@ -1,4 +1,5 @@
 import { newsReducer } from '../newsReducer.js';
+import actionTypes from 'redux/actionsType/actionTypes';
 
 describe('filterNewsReducer', () => {
   let initialState;
@@ -8,7 +9,7 @@ describe('filterNewsReducer', () => {
   });
 
   it('newsReducer with action.type PUT_NEWS_IN_STORE', () => {
-    const action = { type: 'PUT_NEWS_IN_STORE', payload: 'payload' };
+    const action = { type: actionTypes.PUT_NEWS_IN_STORE, payload: 'payload' };
     expect(newsReducer(initialState, action)).toEqual({ newsData: 'payload' });
   });
 

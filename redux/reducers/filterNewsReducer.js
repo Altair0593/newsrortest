@@ -1,11 +1,12 @@
-import actionTypes from '../actionsType/actionTypes.js';
-import moment from 'moment';
+import actionTypes from '../actionsType/actionTypes';
+
+const currentDate = new Date();
 
 export const initialState = {
-  dateFrom: moment().format('DD-MM-YYYY'),
-  dateTo: moment().format('DD-MM-YYYY'),
+  dateFrom: currentDate,
+  dateTo: currentDate,
   language: 'en',
-  category: 'bitcoin',
+  category: 'trump',
   defaultActivePage: 1,
   totalPages: 10,
 };
@@ -15,7 +16,7 @@ export const filterNewsReducer = (state = initialState, action) => {
     case actionTypes.PUT_DATE_IN_STORE:
       return {
         ...state,
-        [action.payload.name]: action.payload.date,
+        ...action.payload,
       };
     case actionTypes.PUT_LANGUAGE_IN_STORE:
       return {

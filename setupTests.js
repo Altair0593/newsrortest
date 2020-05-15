@@ -8,10 +8,12 @@ import Adapter from 'enzyme-adapter-react-16';
 import 'jest-styled-components';
 import { JSDOM } from 'jsdom';
 import localStorage from 'localStorage';
+import { ThemeConsumer } from 'styled-components';
 import IntlPolyfill from 'intl';
 import { IntlProvider, createIntl } from 'react-intl';
 import { Provider } from 'react-redux';
-import messages from './managers/locales/message/en-Us';
+import messages from 'managers/locales/message/en-Us';
+import lightTheme from 'managers/themeManager/theme/lightTheme';
 
 const dom = new JSDOM(`<!DOCTYPE html><html lang="en"><head></head><body></body></html>`);
 
@@ -59,7 +61,8 @@ global.mountRender = Component => {
   return mount(Component);
 };
 
-global.mountSmart = (component, store) => {
+global.mountSmart = (component, store, theme = lightTheme) => {
+  ThemeConsumer._currentValue = theme;
   const intl = createIntl(
     {
       locale: 'en',
@@ -78,4 +81,29 @@ global.mountSmart = (component, store) => {
       wrappingComponent: IntlProvider,
       wrappingComponentProps: intl,
     });
+};
+
+global.shallowWithTheme = (children, theme = lightTheme) => {
+  ThemeConsumer._currentValue = theme;
+  return shallow(children);
+};
+
+global.shallowSmart = (component, props, store) => {
+  const intl = createIntl(
+    {
+      locale: 'en',
+      defaultLocale: 'en',
+      messages: messages['en-Us'],
+    }
+  );
+
+  const mockProps = { ...props, intl };
+
+  const core = store
+    ? <Provider store={store}>
+      <component {...mockProps}/>
+    </Provider>
+    : <component {...mockProps}/>;
+
+  return shallow(core);
 };

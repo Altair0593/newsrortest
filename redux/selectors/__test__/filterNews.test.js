@@ -1,4 +1,4 @@
-import { getActivePage, getTotalPages ,getFilterNews, getDateFrom, getDateTo, getLanguage, getCategory } from '../filterNews.js';
+import * as filterSelectors from '../filterNews';
 
 describe('testFilterNewsSelectors', () => {
   let state = { filterNews: null };
@@ -16,54 +16,54 @@ describe('testFilterNewsSelectors', () => {
 
   describe('getFilterNews', () => {
     it('getFilterNews work correct', () => {
-      expect(getFilterNews(state)).toEqual(state.filterNews);
+      expect(filterSelectors.getFilterNews(state)).toEqual(state.filterNews);
     });
 
     it('getFilterNews failed with incorrect data', () => {
-      expect(getFilterNews(state)).not.toEqual(state.state);
+      expect(filterSelectors.getFilterNews(state)).not.toEqual(state.state);
     });
   });
 
   describe('getDateFrom', () => {
     it('getDateFrom work correct', () => {
-       expect(getDateFrom.resultFunc(state.filterNews)).toEqual(state.filterNews.dateFrom);
+       expect(filterSelectors.getDateFrom.resultFunc(state.filterNews)).toEqual(state.filterNews.dateFrom);
     });
   });
 
   describe('getDateTo', () => {
     it('getDateTo work correct', () => {
-      expect(getDateTo.resultFunc(state.filterNews)).toEqual(state.filterNews.dateTo);
+      expect(filterSelectors.getDateTo.resultFunc(state.filterNews)).toEqual(state.filterNews.dateTo);
     });
   });
 
   describe('getLanguage', () => {
     it('getLanguage work correct', () => {
-      expect(getLanguage.resultFunc(state.filterNews)).toEqual(state.filterNews.language);
+      expect(filterSelectors.getLanguage.resultFunc(state.filterNews)).toEqual(state.filterNews.language);
     });
   });
 
   describe('getCategory', () => {
     it('getCategory work correct', () => {
-      expect(getCategory.resultFunc(state.filterNews)).toEqual(state.filterNews.category);
+      expect(filterSelectors.getCategory.resultFunc(state.filterNews)).toEqual(state.filterNews.category);
     });
   });
 
   describe('getActivePage', () => {
     it('getActivePage work correct', () => {
-      expect(getActivePage(state)).toEqual(state.filterNews.defaultActivePage);
+      expect(filterSelectors.getActivePage(state)).toEqual(state.filterNews.defaultActivePage);
     });
 
     it('getActivePage failed with incorrect data', () => {
-      expect(getActivePage(state)).not.toEqual(state.state);
+      expect(filterSelectors.getActivePage(state)).not.toEqual(state.state);
     });
   });
   describe('getTotalPages', () => {
     it('getTotalPages work correct', () => {
-      expect(getTotalPages(state)).toEqual(state.filterNews.totalPages);
+      expect(filterSelectors.getTotalPages(state)).toEqual(state.filterNews.totalPages);
     });
 
     it('getTotalPages failed with incorrect data', () => {
-      expect(getTotalPages(state)).not.toEqual(state.state);
+      expect(filterSelectors.getTotalPages(state)).not.toEqual(state.state);
     });
   });
 });

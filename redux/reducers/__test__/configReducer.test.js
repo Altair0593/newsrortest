@@ -1,4 +1,5 @@
 import { configReducer } from '../configReducer';
+import actionTypes from 'redux/actionsType/actionTypes';
 
 describe('configReducer', () => {
   let initialState;
@@ -8,7 +9,7 @@ describe('configReducer', () => {
   });
 
   it('configReducer with action.type PUT_TRANSLATE_LANGUAGE', () => {
-    const action = { type: 'PUT_TRANSLATE_LANGUAGE', payload: 'payload' };
+    const action = { type: actionTypes.PUT_TRANSLATE_LANGUAGE, payload: 'payload' };
     expect(configReducer(initialState, action)).toEqual({ locale: 'payload' });
   });
 

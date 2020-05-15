@@ -1,12 +1,13 @@
-import mockNews from './mockNews';
+import mockNews from '../__mocks__/mockNews';
+import { datePickerButton, datePickerInputs } from './configHelper/datePicker';
+import { languagePickerButtons } from './configHelper/languagePicker';
 import mockTopics from './mockTopics';
-import { datePickerButton, datePickerInputs } from './configHelper/datePicker.js';
-import { headerModalButton, headerModalText } from './configHelper/headerHelper.js';
-import { languagePickerButtons } from './configHelper/languagePicker.js';
+import { headerModalButton, headerModalText } from './configHelper/headerHelper';
 
 export default {
   mockNews,
   mockTopics,
+  defaultTheme: 'light',
   defaultLocale: 'en-Us',
   datePickerInputs,
   datePickerButton,
