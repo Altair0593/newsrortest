@@ -4,7 +4,7 @@
 .pnp.js
 
 /.idea
-/.yarn
+#/.yarn
 package-lock.json
 # testing
 /coverage
@@ -31,4 +31,3 @@ yarn-error.log*
 .env.production.local
 
 *.snap
-.yarn/
