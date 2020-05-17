@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   changeLanguage: payload => dispatch(actions.changeLanguage(payload)),
+  getDefaultNews: () => dispatch(actions.getDefaultNews()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);

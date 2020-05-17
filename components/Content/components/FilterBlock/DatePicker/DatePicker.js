@@ -7,10 +7,11 @@ import { DatePickerStyled } from './styled';
 import { ThemeContext } from 'styled-components';
 
 const DatePickers = ({
-    datePickerInputs,
-    datePickerButton,
-    putDateInStore,
-  }) => {
+  datePickerInputs,
+  datePickerButton,
+  putDateInStore,
+  getDefaultNews,
+}) => {
   const [dateFromState, setDateFromState] = useState(new Date());
   const [dateToState, setDateToState] = useState(new Date());
 
@@ -25,8 +26,9 @@ const DatePickers = ({
     setDateToState(date);
   };
 
-  const setNewDate = async () => {
-    await putDateInStore({ dateFrom: dateFromState, dateTo: dateToState });
+  const setNewDate = () => {
+    putDateInStore({ dateFrom: dateFromState, dateTo: dateToState });
+    getDefaultNews();
   };
 
   return (
@@ -54,9 +56,10 @@ const DatePickers = ({
 };
 
 DatePickers.propTypes = {
-  datePickerInputs: PropTypes.array.isRequired,
-  datePickerButton: PropTypes.object.isRequired,
   putDateInStore: PropTypes.func.isRequired,
+  datePickerInputs: PropTypes.array.isRequired,
+  getDefaultNews: PropTypes.func.isRequired,
+  datePickerButton: PropTypes.object.isRequired,
 };
 
 export default DatePickers;

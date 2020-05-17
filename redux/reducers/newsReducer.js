@@ -10,7 +10,7 @@ export const newsReducer = (state = initialState, action) => {
       return {
         ...state,
         newsData: action.payload,
-    };
+      };
     default:
       return state;
   }

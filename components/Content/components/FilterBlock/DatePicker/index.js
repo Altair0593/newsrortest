@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  getDefaultNews: () => dispatch(actions.getDefaultNews()),
   putDateInStore: payload => dispatch(actions.putDateInStore(payload)),
 });
 

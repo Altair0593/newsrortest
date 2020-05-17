@@ -29,7 +29,7 @@ const NewsBlock = ({ news }) => {
                       <span>{el.source.name}</span>
                     </Item.Extra>
                   </StyledFlexDiv>
-                  <StyledFlexDiv>
+                  <StyledFlexDiv fontWeight='bold'>
                     <Item.Extra>
                       <span>{el.publishedAt}</span>
                     </Item.Extra>

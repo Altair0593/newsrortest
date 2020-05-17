@@ -7,3 +7,7 @@ export const changeLanguage = payload => ({ type: actionTypes.CHANGE_LANGUAGE, p
 export const changeDateFilter = payload => ({ type: actionTypes.CHANGE_DATE_FILTER, payload });
 export const putDateInStore = payload => ({ type: actionTypes.PUT_DATE_IN_STORE, payload });
 export const putLanguageInStore = payload => ({ type: actionTypes.PUT_LANGUAGE_IN_STORE, payload });
+export const addNewTopic = payload => ({ type: actionTypes.ADD_NEW_TOPIC, payload });
+export const addNewTopicInStore = payload => ({ type: actionTypes.PUT_NEW_TOPIC_IN_STORE, payload });
+export const putCategoryInStore = payload => ({ type: actionTypes.PUT_CATEGORY_IN_STORE, payload });
+export const changeActivePage = payload => ({ type: actionTypes.CHANGE_ACTIVE_PAGE, payload });

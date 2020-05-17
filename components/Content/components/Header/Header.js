@@ -5,18 +5,39 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import { StyledFlexDiv } from 'components/Content/styled';
 import { StyledHeader } from './styled';
+import { topicsMaximum } from 'constants/topicsAmountConst';
 
-const Header = ({ topics, headerModalButton, headerModalText, currentCategory }) => {
-  const [activeItem, setState] = useState({ activeItem: 'active' });
-  const [isModalState, setModalState] = useState(false);
+const Header = ({
+  topics,
+  headerModalButton,
+  headerModalText,
+  currentCategory,
+  addNewTopic,
+}) => {
+  const [activeItem, setActiveItem] = useState({ activeItem: 'active' });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [topic, setNewTopicName] = useState('');
   const intl = useIntl();
 
   const changeModalState = () => {
-    setModalState(!isModalState);
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const setNewTopicAndChangeModalState = () => {
+    if (!topic.length) {
+      return;
+    }
+      addNewTopic(topic);
+      setNewTopicName('');
+      setIsModalOpen(!isModalOpen);
   };
 
   const changeActiveItem = (e, { name }) => {
-    setState({ activeItem: name });
+    setActiveItem({ activeItem: name });
+  };
+
+  const setNewTopicNameHelper = (e, name) => {
+    setNewTopicName(name.value);
   };
 
   return (
@@ -33,56 +54,42 @@ const Header = ({ topics, headerModalButton, headerModalText, currentCategory })
               {item.name}
             </Menu.Item>
           )}
-          <Menu.Menu position='right'>
-            <Menu.Item
-              name='add-topic'
-              active={activeItem === 'add-topic'}
-              onClick={changeModalState}
-            >
-              <Icon
-                name='add'
-              />
-              <FormattedMessage
-                id={headerModalButton.addTopic}
-                defaultMessage='Add Topic'
-              />
-            </Menu.Item>
-          </Menu.Menu>
+          { topics.length < topicsMaximum ?
+            <Menu.Menu position='right'>
+              <Menu.Item
+                name='add-topic'
+                active={activeItem === 'add-topic'}
+                onClick={changeModalState}
+              >
+                <Icon
+                  name='add'
+                />
+                <FormattedMessage
+                  id={headerModalButton.addTopic}
+                  defaultMessage='Add Topic'
+                />
+              </Menu.Item>
+            </Menu.Menu>
+            : null }
         </Menu>
         <Modal
-          open={isModalState}
+          open={isModalOpen}
           onClose={changeModalState}
           basic
           size='tiny'
         >
-          <Modal.Content>
-            <h3>
-              <FormattedMessage
-                id={headerModalText.headerModalTitle}
-                defaultMessage='Please, choose topic that you want to add.'
-              />
-            </h3>
-          </Modal.Content>
+          <StyledFlexDiv justifyContent='center' marginSmall='0 0 25px 0'>
+            <Modal.Content>
+              <h3>
+                <FormattedMessage
+                  id={headerModalText.headerModalTitle}
+                  defaultMessage='Please, choose topic that you want to add.'
+                />
+              </h3>
+            </Modal.Content>
+          </StyledFlexDiv>
           <Modal.Actions>
             <StyledFlexDiv>
-              <Input
-                onKeyDown={checkInputValue}
-                maxLength='20'
-                placeholder={intl.formatMessage({ id: headerModalText.headerModalPlaceholder })}
-              />
-              <Button
-                attached='right'
-                color='green'
-                onClick={changeModalState}
-                inverted>
-                <Icon
-                  name='checkmark'
-                />
-                <FormattedMessage
-                  id={headerModalButton.add}
-                  defaultMessage='Add'
-                />
-              </Button>
               <Button
                 attached='left'
                 color='red'
@@ -94,6 +101,27 @@ const Header = ({ topics, headerModalButton, headerModalText, currentCategory })
                 <FormattedMessage
                   id={headerModalButton.back}
                   defaultMessage='Back'
+                />
+              </Button>
+              <StyledFlexDiv marginSmall='10px'>
+                <Input
+                  onKeyDown={checkInputValue}
+                  onChange={setNewTopicNameHelper}
+                  maxLength='20'
+                  placeholder={intl.formatMessage({ id: headerModalText.headerModalPlaceholder })}
+                />
+              </StyledFlexDiv>
+              <Button
+                attached='right'
+                color='green'
+                onClick={setNewTopicAndChangeModalState}
+                inverted>
+                <Icon
+                  name='checkmark'
+                />
+                <FormattedMessage
+                  id={headerModalButton.add}
+                  defaultMessage='Add'
                 />
               </Button>
             </StyledFlexDiv>
@@ -109,6 +137,8 @@ const Header = ({ topics, headerModalButton, headerModalText, currentCategory })
 
 Header.propTypes = {
   topics: PropTypes.array.isRequired,
+  addNewTopic: PropTypes.func.isRequired,
+  currentCategory: PropTypes.string.isRequired,
   headerModalText: PropTypes.object.isRequired,
   headerModalButton: PropTypes.object.isRequired,
 };

@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 import { StyledFlexDiv } from 'components/Content/styled';
 import { FormattedMessage } from 'react-intl';
 
-const LanguagePicker = ({ languagePickerButtons, changeLanguage }) => {
+const LanguagePicker = ({ languagePickerButtons, changeLanguage, getDefaultNews }) => {
   const [activeItem, setActiveItem] = useState('');
 
   const changeLanguageState = (event, { value }) => {
     setActiveItem(value);
     changeLanguage(value);
+    getDefaultNews();
   };
 
   return (
@@ -41,8 +42,9 @@ const LanguagePicker = ({ languagePickerButtons, changeLanguage }) => {
 };
 
 LanguagePicker.propTypes = {
-  languagePickerButtons: PropTypes.array.isRequired,
   changeLanguage: PropTypes.func.isRequired,
+  getDefaultNews: PropTypes.func.isRequired,
+  languagePickerButtons: PropTypes.array.isRequired,
 };
 
 export default LanguagePicker;

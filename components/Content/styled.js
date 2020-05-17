@@ -11,6 +11,10 @@ export const sizesStyles = css`
   ${({ maxWidth }) => maxWidth && `maxWidth: ${maxWidth}`};
   ${({ minWidth }) => minWidth && `minWidth: ${minWidth}`};
 `;
+export const fontStyles = css`
+${({ fontWeight }) => fontWeight && `font-weight: ${fontWeight}`};
+${({ fontSize }) => fontSize && `font-size: ${fontSize}`};
+`;
 
 export const flexStyles = css`
   display: flex;
@@ -23,6 +27,7 @@ export const StyledFlexDiv = styled.div`
   &&&& {
     ${flexStyles}
     ${sizesStyles}
+    ${fontStyles}
     ${({ hasFocus }) => `border-color: ${hasFocus ? hasFocus : 'none'}`};
     ${({ marginSmall }) => marginSmall && `margin: ${marginSmall}`};
     ${({ display }) => display && `display: ${display}`};
@@ -35,12 +40,33 @@ export const NewsWrapper = styled(StyledFlexDiv)`
 `;
 
 export const MainWrapper = styled(StyledFlexDiv)`
-  height: 100%;
+  ${({ hasHeight }) => hasHeight && `height: ${hasHeight}`};
+  ${({ hasWidth }) => hasWidth && `width: ${hasWidth}`};
   background-color: ${props => props.bgColorContainer ? props.bgColorContainer : colors.color__04};
+  ${({ hasMinHeight }) => hasMinHeight && `min-height: ${hasMinHeight}`};
+  ${({ hasBgImages }) => hasBgImages && `background-image: url(images/mainBg.jpg)`};
+  ${({ hasFlexWrap }) => hasFlexWrap && `flex-wrap: wrap`};
+  background-size: 120%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 `;
 
 export const MainContainer = styled(Container)`
   &&&& {
-  background-color: ${colors.color__04}
+  ${({ hasBgColor }) => hasBgColor && `background-color: ${colors.color__04}`}
+  }
+`;
+
+export const ContainerWithBrRadius = styled(MainWrapper)`
+  ${({ hasBrRadius }) => hasBrRadius && `border-radius: ${hasBrRadius}`};
+  ${({ hasBgColor }) => hasBgColor && `background-color: ${hasBgColor}`};
+`;
+
+export const CategoryCardWrapper = styled(MainWrapper)`
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  :hover {
+    transform: scale(1.1)
   }
 `;

@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 
 export const notificationSuccess = value => {
-  toast.success(`🦖 ${value}`, {
+  toast.warn(`🦖 ${value}`, {
     position: 'bottom-left',
     autoClose: 4000,
     hideProgressBar: true,

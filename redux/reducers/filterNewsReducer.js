@@ -28,6 +28,11 @@ export const filterNewsReducer = (state = initialState, action) => {
         ...state,
         category: action.payload,
       };
+    case actionTypes.CHANGE_ACTIVE_PAGE:
+      return {
+        ...state,
+        defaultActivePage: action.payload,
+      };
     default:
       return state;
   }

@@ -15,7 +15,7 @@ const Content = () => {
       flexDirection='column'
       bgColorContainer={themeNews.mainBgColor}
     >
-      <MainContainer>
+      <MainContainer hasBgColor>
         <Header/>
         <FilterBlock/>
         <NewsBlock/>

@@ -88,7 +88,9 @@ global.shallowWithTheme = (children, theme = lightTheme) => {
   return shallow(children);
 };
 
-global.shallowSmart = (component, props, store) => {
+global.shallowSmart = (component, props, store, theme = lightTheme) => {
+  ThemeConsumer._currentValue = theme;
+
   const intl = createIntl(
     {
       locale: 'en',

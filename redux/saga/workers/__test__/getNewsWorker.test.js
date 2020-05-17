@@ -3,12 +3,14 @@ import { getNewsWorker } from '../getNewsWorker';
 import { getRequestSender } from '../helpers/request';
 import { putNewsInStore } from 'redux/actions/actions';
 import * as filterSelectors from 'redux/selectors/filterNews';
+import * as helpers from '../helpers/formatDate';
 import { notificationSuccess, notificationError } from '../helpers/notification';
+import mockData from '__mocks__/mockNews';
 
 describe('getNewsWorker with action payload', () => {
   const action = { payload: 'payload' };
   const generator = getNewsWorker(action);
-  const path = 'https://newsapi.org/v2/everything?q=undefined&from=undefined&to=undefined&language=undefined&page=undefined&sortBy=publishedAt&apiKey=a34900e46a5f4b999e43deb5f1931cc6';
+  const path = 'https://newsapi.org/v2/everything?q=undefined&from=undefined&to=undefined&language=undefined&sortBy=publishedAt&page=undefined&apiKey=a34900e46a5f4b999e43deb5f1931cc6';
 
   it('getNewsWorker select getDateTo', () => {
     const actual = generator.next();
@@ -35,9 +37,27 @@ describe('getNewsWorker with action payload', () => {
     expect(actual.value).toEqual(select(filterSelectors.getActivePage));
   });
 
+  it('getNewsWorker call dateToFormatted', () => {
+    const payload = undefined;
+    const actual = generator.next();
+    expect(actual.value).toEqual(call(helpers.formatDatePicker, payload));
+  });
+
+  it('getNewsWorker call dateFromFormatted', () => {
+    const payload = undefined;
+    const actual = generator.next();
+    expect(actual.value).toEqual(call(helpers.formatDatePicker, payload));
+  });
+
   it('getNewsWorker call request', () => {
     const actual = generator.next();
     expect(actual.value).toEqual(call(getRequestSender, path));
+  });
+
+  it('getNewsWorker call formatPublishedDate', () => {
+    const payload = mockData;
+    const actual = generator.next();
+    expect(actual.value).toEqual(call(helpers.formatPublishedDate, payload));
   });
 
   it('getNewsWorker put news in store', () => {

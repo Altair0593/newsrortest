@@ -14,5 +14,7 @@ export default {
     france: 'France',
     spain: 'Spain',
     russian: 'Russian',
+    chooseCategory: 'Choose a news category',
+    addNewCategory: 'Add news category',
   },
 };

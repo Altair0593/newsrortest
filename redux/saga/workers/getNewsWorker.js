@@ -3,27 +3,33 @@ import { notificationSuccess, notificationError } from './helpers/notification';
 
 import rout from 'constants/apiConst';
 import { getRequestSender } from './helpers/request';
-import { putNewsInStore } from 'redux/actions/actions';
+import { putNewsInStore, putTotalPages } from 'redux/actions/actions';
 import * as filterSelectors from 'redux/selectors/filterNews';
+import * as helpers from './helpers/formatDate';
 
 export function* getNewsWorker() {
   try {
     const dateTo = yield select(filterSelectors.getDateTo);
     const dateFrom = yield select(filterSelectors.getDateFrom);
-    const сategory = yield select(filterSelectors.getCategory);
+    const category = yield select(filterSelectors.getCategory);
     const language = yield select(filterSelectors.getLanguage);
     const activePage = yield select(filterSelectors.getActivePage);
 
-    const path = `${rout.url}${сategory}&from=${dateFrom}&to=${dateTo}&language=${language}&page=${activePage}&sortBy=publishedAt&${rout.apiKey}`;
+    const dateToFormatted = yield call(helpers.formatDatePicker, dateTo);
+    const dateFromFormatted = yield call(helpers.formatDatePicker, dateFrom);
+
+    const path = `${rout.url}${category}&from=${dateFromFormatted}&to=${dateToFormatted}&language=${language}&sortBy=publishedAt&pageSize=10&page=${activePage}&${rout.apiKey}`;
+
     const response = yield call(getRequestSender, path);
-    
-    if (response.data.articles) {
-      yield put(putNewsInStore(response.data.articles));
+    const { articles } = response.data;
+    const newResponse = yield call(helpers.formatPublishedDate, articles);
+    if (newResponse) {
+      yield put(putNewsInStore(newResponse));
       yield call(notificationSuccess, 'News was loaded');
     } else {
       yield call(notificationError, 'News wasn\'t loaded');
     }
   } catch (err) {
-    yield call(notificationError, 'News wasn\'t loaded');
+    yield call(notificationError, 'News wasn\'t loaded CATCH');
   }
 }
