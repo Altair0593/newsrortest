@@ -6,7 +6,7 @@ export const initialState = {
   dateFrom: currentDate,
   dateTo: currentDate,
   language: 'en',
-  category: 'trump',
+  category: 'sport',
   defaultActivePage: 1,
   totalPages: 10,
 };

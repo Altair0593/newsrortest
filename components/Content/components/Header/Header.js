@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Icon, Menu, Modal, Button, Input } from 'semantic-ui-react';
+import { Icon, Menu } from 'semantic-ui-react';
 import { checkInputValue } from './helpers/validation';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import { StyledFlexDiv } from 'components/Content/styled';
 import { StyledHeader } from './styled';
+import ModalComponent from 'libs/ModalComponent/ModalComponent';
 import { topicsMaximum } from 'constants/topicsAmountConst';
 
 const Header = ({
@@ -12,12 +13,13 @@ const Header = ({
   headerModalButton,
   headerModalText,
   currentCategory,
+  putCategoryInStore,
   addNewTopic,
+  getDefaultNews,
 }) => {
   const [activeItem, setActiveItem] = useState({ activeItem: 'active' });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [topic, setNewTopicName] = useState('');
-  const intl = useIntl();
 
   const changeModalState = () => {
     setIsModalOpen(!isModalOpen);
@@ -34,6 +36,8 @@ const Header = ({
 
   const changeActiveItem = (e, { name }) => {
     setActiveItem({ activeItem: name });
+    putCategoryInStore(name);
+    getDefaultNews();
   };
 
   const setNewTopicNameHelper = (e, name) => {
@@ -72,61 +76,21 @@ const Header = ({
             </Menu.Menu>
             : null }
         </Menu>
-        <Modal
+        <ModalComponent
           open={isModalOpen}
           onClose={changeModalState}
-          basic
-          size='tiny'
-        >
-          <StyledFlexDiv justifyContent='center' marginSmall='0 0 25px 0'>
-            <Modal.Content>
-              <h3>
-                <FormattedMessage
-                  id={headerModalText.headerModalTitle}
-                  defaultMessage='Please, choose topic that you want to add.'
-                />
-              </h3>
-            </Modal.Content>
-          </StyledFlexDiv>
-          <Modal.Actions>
-            <StyledFlexDiv>
-              <Button
-                attached='left'
-                color='red'
-                onClick={changeModalState}
-                inverted>
-                <Icon
-                  name='remove'
-                />
-                <FormattedMessage
-                  id={headerModalButton.back}
-                  defaultMessage='Back'
-                />
-              </Button>
-              <StyledFlexDiv marginSmall='10px'>
-                <Input
-                  onKeyDown={checkInputValue}
-                  onChange={setNewTopicNameHelper}
-                  maxLength='20'
-                  placeholder={intl.formatMessage({ id: headerModalText.headerModalPlaceholder })}
-                />
-              </StyledFlexDiv>
-              <Button
-                attached='right'
-                color='green'
-                onClick={setNewTopicAndChangeModalState}
-                inverted>
-                <Icon
-                  name='checkmark'
-                />
-                <FormattedMessage
-                  id={headerModalButton.add}
-                  defaultMessage='Add'
-                />
-              </Button>
-            </StyledFlexDiv>
-          </Modal.Actions>
-        </Modal>
+          onKeyDown={checkInputValue}
+          onChange={setNewTopicNameHelper}
+          titleId={headerModalText.headerModalTitle}
+          backButtonId={headerModalButton.back}
+          addButtonId={headerModalButton.add}
+          inputId={headerModalText.headerModalPlaceholder}
+          titleDefaultMessage='Please, choose topic that you want to add.'
+          backButtonDefaultMessage='Back'
+          addButtonDefaultMessage='Add'
+          backButtonOnClick={changeModalState}
+          addButtonOnClick={setNewTopicAndChangeModalState}
+        />
       </StyledFlexDiv>
       <StyledFlexDiv justifyContent='flex-start' marginSmall='20px 50px'>
         <StyledHeader size='large'>{currentCategory}</StyledHeader>
@@ -139,6 +103,8 @@ Header.propTypes = {
   topics: PropTypes.array.isRequired,
   addNewTopic: PropTypes.func.isRequired,
   currentCategory: PropTypes.string.isRequired,
+  getDefaultNews: PropTypes.func.isRequired,
+  putCategoryInStore: PropTypes.func.isRequired,
   headerModalText: PropTypes.object.isRequired,
   headerModalButton: PropTypes.object.isRequired,
 };

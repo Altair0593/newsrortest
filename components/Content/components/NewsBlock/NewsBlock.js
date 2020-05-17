@@ -19,7 +19,10 @@ const NewsBlock = ({ news }) => {
         >
           <Item.Group>
             <Item>
-              <Item.Image size='small' src={el.urlToImage} />
+              { el.urlToImage
+                ? <Item.Image size='small' src={el.urlToImage} />
+                : <Item.Image size='small' src='/images/news-default-image.png' />
+              }
               <Item.Content>
                 <Item.Header>{el.title}</Item.Header>
                 <Item.Meta>{el.description}</Item.Meta>

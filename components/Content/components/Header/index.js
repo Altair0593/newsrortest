@@ -3,7 +3,7 @@ import Header from './Header';
 import * as topicsSelector from 'redux/selectors/topics';
 import * as configSelectors from 'redux/selectors/config';
 import * as filerNews from 'redux/selectors/filterNews';
-import { addNewTopic } from 'redux/actions/actions';
+import * as actions from 'redux/actions/actions';
 
 const mapStateToProps = state => ({
   topics: topicsSelector.getTopics(state),
@@ -13,7 +13,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addNewTopic: payload => dispatch(addNewTopic(payload)),
+  addNewTopic: payload => dispatch(actions.addNewTopic(payload)),
+  getDefaultNews: () => dispatch(actions.getDefaultNews()),
+  putCategoryInStore: payload => dispatch(actions.putCategoryInStore(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
