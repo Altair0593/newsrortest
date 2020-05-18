@@ -10,6 +10,7 @@ describe('filterNewsReducer', () => {
       dateTo: 'dateTo',
       language: 'language',
       category: 'category',
+      isError: false,
     };
   });
 
@@ -31,5 +32,10 @@ describe('filterNewsReducer', () => {
   it('filterNewsReducer with action.type PUT_TIME', () => {
     const action = { type: 'PUT_TIME', payload: 'payload' };
     expect(filterNewsReducer(initialState, action)).toEqual(initialState);
+  });
+
+  it('filterNewsReducer with action.type CHANGE_IS_ERROR', () => {
+    const action = { type: 'CHANGE_IS_ERROR', payload: 'payload' };
+    expect(filterNewsReducer(initialState, action)).toEqual({ ...initialState, isError: action.payload });
   });
 });

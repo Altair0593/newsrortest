@@ -5,18 +5,20 @@ import { useIntl } from 'react-intl';
 import { StyledFlexDiv } from 'components/Content/styled';
 import { DatePickerStyled } from './styled';
 import { ButtonStyled } from 'styled';
+import { checkDates } from 'utils/validation';
 
 const DatePickers = ({
-  dateTo,
-  dateFrom,
-  putDateInStore,
-  getDefaultNews,
-  datePickerInputs,
-  datePickerButton,
+ dateTo,
+ dateFrom,
+ isError,
+ changeIsError,
+ putDateInStore,
+ getDefaultNews,
+ datePickerInputs,
+ datePickerButton,
 }) => {
- const themeNews = useContext(ThemeContext).newsPage;
+  const themeNews = useContext(ThemeContext).newsPage;
   const intl = useIntl();
-
   const changeDateFilterFrom = (date) => {
     putDateInStore({ dateFrom: date });
   };
@@ -26,7 +28,16 @@ const DatePickers = ({
   };
 
   const setNewDate = () => {
+    const result = checkDates(dateTo, dateFrom);
+    if (!result) {
+      changeIsError(true);
+      return;
+    }
     getDefaultNews();
+  };
+
+  const handleChangeIsError = () => {
+    changeIsError(false);
   };
 
   return (
@@ -34,12 +45,13 @@ const DatePickers = ({
       {datePickerInputs.map(el =>
         <StyledFlexDiv marginSmall='20px 10px' key={el.id}>
           <DatePickerStyled
-            border={themeNews.datePickerBorder}
+            border={!isError ? themeNews.datePickerBorder : themeNews.redBorder }
             name={el.name}
             dateFormat={el.dateFormat}
             maxDate={new Date()}
             selected={el.name === 'dateFrom' ? dateFrom : dateTo}
             onChange={el.name === 'dateFrom' ? changeDateFilterFrom : changeDateFilterTo}
+            onFocus={handleChangeIsError}
           />
         </StyledFlexDiv>
       )}
@@ -58,7 +70,9 @@ const DatePickers = ({
 
 DatePickers.propTypes = {
   dateTo: PropTypes.number.isRequired,
+  isError: PropTypes.bool.isRequired,
   dateFrom: PropTypes.number.isRequired,
+  changeIsError: PropTypes.func.isRequired,
   getDefaultNews: PropTypes.func.isRequired,
   putDateInStore: PropTypes.func.isRequired,
   datePickerInputs: PropTypes.array.isRequired,

@@ -1,4 +1,5 @@
 import * as regularExpression from './regularExpression';
+import moment from "moment";
 
 export const checkInputValue = (event) => {
   if (!event.key.match(regularExpression.textExpression)) {
@@ -9,4 +10,8 @@ export const checkInputValue = (event) => {
     }
   }
   return true;
+};
+
+export const checkDates = (dateFromState, dateToState) => {
+  return moment(dateFromState).isAfter(dateToState);
 };

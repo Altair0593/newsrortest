@@ -11,4 +11,5 @@ export const addNewTopicInStore = payload => ({ type: actionTypes.PUT_NEW_TOPIC_
 export const putCategoryInStore = payload => ({ type: actionTypes.PUT_CATEGORY_IN_STORE, payload });
 export const changeActivePage = payload => ({ type: actionTypes.CHANGE_ACTIVE_PAGE, payload });
 export const putTotalPagesInStore = payload => ({ type: actionTypes.PUT_TOTAL_RESULT_IN_STORE, payload });
+export const changeIsError = payload => ({ type: actionTypes.CHANGE_IS_ERROR, payload });
 export const resetStoreToDefault = () => ({ type: actionTypes.RESET_STORE });

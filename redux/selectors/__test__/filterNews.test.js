@@ -11,6 +11,7 @@ describe('testFilterNewsSelectors', () => {
       category: 'category',
       defaultActivePage: 'defaultActivePAge',
       totalPages: 'totalPages',
+      isError: false,
     };
   });
 
@@ -57,6 +58,7 @@ describe('testFilterNewsSelectors', () => {
       expect(filterSelectors.getActivePage(state)).not.toEqual(state.state);
     });
   });
+
   describe('getTotalPages', () => {
     it('getTotalPages work correct', () => {
       expect(filterSelectors.getTotalPages(state)).toEqual(state.filterNews.totalPages);
@@ -64,6 +66,16 @@ describe('testFilterNewsSelectors', () => {
 
     it('getTotalPages failed with incorrect data', () => {
       expect(filterSelectors.getTotalPages(state)).not.toEqual(state.state);
+    });
+  });
+
+  describe('getIsErrorValue', () => {
+    it('getIsErrorValue work correct', () => {
+      expect(filterSelectors.getIsErrorValue(state)).toEqual(state.filterNews.isError);
+    });
+
+    it('getFilterNews failed with incorrect data', () => {
+      expect(filterSelectors.getIsErrorValue(state)).not.toEqual(state.state);
     });
   });
 });

@@ -10,6 +10,7 @@ export const initialState = {
   category: 'trump',
   defaultActivePage: 1,
   totalPages: 10,
+  isError: false,
 };
 
 export const filterNewsReducer = (state = initialState, action) => {
@@ -42,6 +43,11 @@ export const filterNewsReducer = (state = initialState, action) => {
     case actionTypes.RESET_STORE:
       return {
         ...initialState,
+      };
+    case actionTypes.CHANGE_IS_ERROR:
+      return {
+        ...state,
+        isError: action.payload,
       };
     default:
       return state;

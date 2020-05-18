@@ -10,6 +10,10 @@ describe('DatePicker', () => {
       dateTo: 'dateTo',
       datePickerInputs: config.datePickerInputs,
       datePickerButton: config.datePickerButton,
+      isError: true,
+      changeIsError: jest.fn(x => true),
+      getDefaultNews: jest.fn(x => true),
+      putDateInStore: jest.fn(x => true),
     };
   });
 

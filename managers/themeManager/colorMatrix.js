@@ -22,6 +22,7 @@ export default {
     color__21: '#493f2a', //news page bg
     color__22: '#f68851',
     color__23: '#de6224',
+    color__24: '#800000',
     color__25: '#000',
     color__26: '#ff8000',
 };

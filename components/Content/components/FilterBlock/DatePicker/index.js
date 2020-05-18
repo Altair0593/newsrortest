@@ -7,6 +7,7 @@ import Component from './DatePicker';
 const mapStateToProps = state => ({
   dateTo: filterSelectors.getDateTo(state),
   dateFrom: filterSelectors.getDateFrom(state),
+  isError: filterSelectors.getIsErrorValue(state),
   datePickerButton: configSelectors.getDatePickerButton(state),
   datePickerInputs: configSelectors.getDatePickerInputs(state),
 });
@@ -14,6 +15,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getDefaultNews: () => dispatch(actions.getDefaultNews()),
   putDateInStore: payload => dispatch(actions.putDateInStore(payload)),
+  changeIsError: payload => dispatch(actions.changeIsError(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);

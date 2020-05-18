@@ -31,3 +31,8 @@ export const getTotalPages = createSelector(
   getFilterNews,
   filterNews => filterNews.totalPages,
 );
+
+export const getIsErrorValue = createSelector(
+  getFilterNews,
+  filterNews => filterNews.isError,
+);
