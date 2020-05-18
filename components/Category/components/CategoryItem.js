@@ -23,15 +23,13 @@ const CategoryItem = ({
     marginSmall={marginSmall}
     bgColorContainer={mainBgColor}
   >
-    <StyledFlexDiv padding='20px 0'
+    <StyledFlexDiv padding='15px 0'
      id={category}
-     onClick={onClickCallback}
     >
       <Image
         size='small'
         src={imageUrl}
         id={category}
-        onClick={onClickCallback}
       />
     </StyledFlexDiv>
     <ContainerWithBrRadius
@@ -40,14 +38,12 @@ const CategoryItem = ({
       padding='20px 0'
       hasBrRadius={brRadius}
       hasBgColor={titleBgColor}
-      onClick={onClickCallback}
     >
       <Title
         id={category}
         children={name}
         hasFontSize='20px'
         hasColor={titleColor}
-        onClick={onClickCallback}
         hasTextTransform='uppercase'
       />
     </ContainerWithBrRadius>

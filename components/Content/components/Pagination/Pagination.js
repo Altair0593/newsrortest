@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Pagination } from 'semantic-ui-react';
 import { StyledFlexDiv } from 'components/Content/styled';
 
-const paginationRender = ({ totalPages, changeActivePage, getDefaultNews }) => {
+const paginationRender = ({ totalPages, changeActivePage, getDefaultNews, news }) => {
   const [activeItem, setActiveItem] = useState('');
 
   const changePageState = (event, { activePage }) => {
@@ -13,13 +13,20 @@ const paginationRender = ({ totalPages, changeActivePage, getDefaultNews }) => {
   };
   return (
     <StyledFlexDiv>
-      <Pagination activePage={activeItem} totalPages={totalPages} onPageChange={changePageState} />
+      {news.length >= 10
+        ? <Pagination
+          activePage={activeItem}
+          totalPages={totalPages}
+          onPageChange={changePageState}
+        />
+        : null
+      }
     </StyledFlexDiv>
   );
 };
 
 paginationRender.propTypes = {
-  activePage: PropTypes.number,
+  news: PropTypes.array,
   totalPages: PropTypes.number,
   getDefaultNews: PropTypes.func,
   changeActivePage: PropTypes.func,

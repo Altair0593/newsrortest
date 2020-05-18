@@ -1,18 +1,18 @@
-const maxDate = new Date();
-
 export const datePickerInputs = [
   {
     name: 'dateFrom',
     popupPosition: 'bottom center',
     id: 'dateFrom',
-    maxDate,
+    dateFormat: 'dd/MM/yyyy',
+    maxDate: new Date(),
     dataAt: 'data-at-date-picker-from',
   },
   {
     name: 'dateTo',
     popupPosition: 'bottom center',
     id: 'dateTo',
-    maxDate,
+    dateFormat: 'dd/MM/yyyy',
+    maxDate: new Date(),
     dataAt: 'data-at-date-picker-to',
   },
 ];

@@ -1,7 +1,6 @@
 import Content from 'components/Content/Content';
 import { getDefaultNews } from 'redux/actions/actions';
 import { dispatchRequest } from 'helpers/newsHelpers';
-import { getNewsStore } from 'redux/selectors/news';
 
 const NewsPage = () => <Content/>;
 

@@ -1,33 +1,31 @@
-import { useContext, useState } from 'react';
-import { Button } from 'semantic-ui-react';
+import { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { StyledFlexDiv } from 'components/Content/styled';
 import { DatePickerStyled } from './styled';
-import { ThemeContext } from 'styled-components';
+import { ButtonStyled } from 'styled';
 
 const DatePickers = ({
-  datePickerInputs,
-  datePickerButton,
+  dateTo,
+  dateFrom,
   putDateInStore,
   getDefaultNews,
+  datePickerInputs,
+  datePickerButton,
 }) => {
-  const [dateFromState, setDateFromState] = useState(new Date());
-  const [dateToState, setDateToState] = useState(new Date());
-
-  const themeNews = useContext(ThemeContext).newsPage;
+ const themeNews = useContext(ThemeContext).newsPage;
   const intl = useIntl();
 
   const changeDateFilterFrom = (date) => {
-    setDateFromState(date);
+    putDateInStore({ dateFrom: date });
   };
 
   const changeDateFilterTo = date => {
-    setDateToState(date);
+    putDateInStore({ dateTo: date });
   };
 
   const setNewDate = () => {
-    putDateInStore({ dateFrom: dateFromState, dateTo: dateToState });
     getDefaultNews();
   };
 
@@ -38,17 +36,20 @@ const DatePickers = ({
           <DatePickerStyled
             border={themeNews.datePickerBorder}
             name={el.name}
+            dateFormat={el.dateFormat}
             maxDate={new Date()}
-            selected={el.name === 'dateFrom' ? dateFromState : dateToState}
+            selected={el.name === 'dateFrom' ? dateFrom : dateTo}
             onChange={el.name === 'dateFrom' ? changeDateFilterFrom : changeDateFilterTo}
           />
         </StyledFlexDiv>
       )}
       <StyledFlexDiv marginSmall='20px 10px'>
-        <Button
-          primary
+        <ButtonStyled
+          hasBgColor={themeNews.buttonBg}
+          hasBgColorHover={themeNews.buttonBgHover}
           content={intl.formatMessage({ id: datePickerButton.content })}
           onClick={setNewDate}
+          fontColor={themeNews.textColor}
         />
       </StyledFlexDiv>
     </>
@@ -56,9 +57,11 @@ const DatePickers = ({
 };
 
 DatePickers.propTypes = {
+  dateTo: PropTypes.number.isRequired,
+  dateFrom: PropTypes.number.isRequired,
+  getDefaultNews: PropTypes.func.isRequired,
   putDateInStore: PropTypes.func.isRequired,
   datePickerInputs: PropTypes.array.isRequired,
-  getDefaultNews: PropTypes.func.isRequired,
   datePickerButton: PropTypes.object.isRequired,
 };
 

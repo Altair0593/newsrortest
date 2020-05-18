@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Icon, Menu } from 'semantic-ui-react';
-import { checkInputValue } from './helpers/validation';
-import { FormattedMessage } from 'react-intl';
+import { checkInputValue } from 'utils/validation';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { ThemeContext } from 'styled-components';
 import PropTypes from 'prop-types';
-import { StyledFlexDiv } from 'components/Content/styled';
+import { StyledFlexDiv, MainWrapper } from 'components/Content/styled';
 import { StyledHeader } from './styled';
 import ModalComponent from 'libs/ModalComponent/ModalComponent';
 import { topicsMaximum } from 'constants/topicsAmountConst';
@@ -20,6 +21,9 @@ const Header = ({
   const [activeItem, setActiveItem] = useState({ activeItem: 'active' });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [topic, setNewTopicName] = useState('');
+
+  const themeNews = useContext(ThemeContext).newsPage;
+  const intl = useIntl();
 
   const changeModalState = () => {
     setIsModalOpen(!isModalOpen);
@@ -92,9 +96,15 @@ const Header = ({
           addButtonOnClick={setNewTopicAndChangeModalState}
         />
       </StyledFlexDiv>
-      <StyledFlexDiv justifyContent='flex-start' marginSmall='20px 50px'>
-        <StyledHeader size='large'>{currentCategory}</StyledHeader>
-      </StyledFlexDiv>
+      <MainWrapper
+        justifyContent='flex-start'
+        padding='20px 50px'
+        bgColorContainer={themeNews.filterBlockBg}
+      >
+        <StyledHeader size='large'>
+          {intl.formatMessage({ id: 'news' }, { currentCategory })}
+        </StyledHeader>
+      </MainWrapper>
     </>
   );
 };

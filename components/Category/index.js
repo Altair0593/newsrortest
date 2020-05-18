@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Component from './Category';
 import * as topicsSelector from 'redux/selectors/topics';
 import * as configSelectors from 'redux/selectors/config';
-import { putCategoryInStore } from 'redux/actions/actions';
+import * as actions from 'redux/actions/actions';
 
 const mapStateToProps = state => ({
   topics: topicsSelector.getTopics(state),
@@ -11,7 +11,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  putCategoryInStore: payload => dispatch(putCategoryInStore(payload)),
+  addNewTopic: payload => dispatch(actions.addNewTopic(payload)),
+  putCategoryInStore: payload => dispatch(actions.putCategoryInStore(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);

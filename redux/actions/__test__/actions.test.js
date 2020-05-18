@@ -17,14 +17,6 @@ describe('changeTranslateLanguage', () => {
   });
 });
 
-describe('changeLanguage', () => {
-  it('changeLanguage, work correct', () => {
-    const expected = { type: actionTypes.CHANGE_LANGUAGE, payload: 'payload' };
-
-    expect(actions.changeLanguage(expected.payload)).toEqual(expected);
-  });
-});
-
 describe('changeDateFilter', () => {
   it('changeLanguage, work correct', () => {
     const expected = { type: actionTypes.CHANGE_DATE_FILTER, payload: 'payload' };

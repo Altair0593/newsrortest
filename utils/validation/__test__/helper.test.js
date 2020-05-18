@@ -1,4 +1,4 @@
-import { checkInputValue } from '../validation';
+import { checkInputValue } from '../index';
 
 describe('checkInputValue works correctly', () => {
   it('must return true', () => {

@@ -3,7 +3,7 @@ import { getNewsWorker } from '../getNewsWorker';
 import { getRequestSender } from '../helpers/request';
 import { putNewsInStore } from 'redux/actions/actions';
 import * as filterSelectors from 'redux/selectors/filterNews';
-import * as helpers from '../helpers/formatDate';
+import * as helpers from '../helpers/formatData';
 import { notificationSuccess, notificationError } from '../helpers/notification';
 import mockData from '__mocks__/mockNews';
 

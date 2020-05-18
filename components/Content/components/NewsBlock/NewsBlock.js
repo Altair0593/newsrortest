@@ -1,51 +1,65 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Item } from 'semantic-ui-react';
-import { StyledFlexDiv, NewsWrapper } from 'components/Content/styled';
+import { Scrollbars } from 'react-custom-scrollbars';
+import { StyledFlexDiv, NewsWrapper, NewsItemStyled } from 'components/Content/styled';
+import CustomNews from 'libs/CustomNews/CustomNews';
 
 const NewsBlock = ({ news }) => {
   const themeNews = useContext(ThemeContext).newsPage;
 
   return (
     <>
-      {news.map(el =>
-        <NewsWrapper
-          key={el.url}
-          marginSmall='30px auto'
-          display='block'
-          padding='20px 10px'
-          hasShadow={themeNews.boxShadow}
-        >
-          <Item.Group>
-            <Item>
-              { el.urlToImage
-                ? <Item.Image size='small' src={el.urlToImage} />
-                : <Item.Image size='small' src='/images/news-default-image.png' />
-              }
-              <Item.Content>
-                <Item.Header>{el.title}</Item.Header>
-                <Item.Meta>{el.description}</Item.Meta>
-                <StyledFlexDiv justifyContent='space-between'>
-                  <StyledFlexDiv>
-                    <Item.Extra as='a'>
-                      <span>{el.source.name}</span>
-                    </Item.Extra>
+      <Scrollbars autoHeight autoHeightMin={630} style={{ width: '100%' }} >
+        {news.length ? news.map(el =>
+          <NewsWrapper
+            key={el.source.id}
+            marginSmall='30px 10px'
+            display='block'
+            padding='20px 10px'
+            hasShadow={themeNews.boxShadow}
+            hasBackground
+          >
+            <Item.Group>
+              <Item>
+                {el.urlToImage
+                  ? <Item.Image size='small' src={el.urlToImage} href={el.url} />
+                  : <Item.Image size='small' src='/images/news-default-image.png' />
+                }
+                <Item.Content>
+                  <NewsItemStyled as='a'
+                    href={el.url}
+                    fontColor={themeNews.headerNewsColor}
+                    fontSize='20px'
+                  >
+                    <span>{el.title}</span>
+                  </NewsItemStyled>
+                  <Item.Meta>{el.description}</Item.Meta>
+                  <StyledFlexDiv justifyContent='space-between' padding='20px 0 0 0'>
+                    <StyledFlexDiv>
+                      <NewsItemStyled as='a'
+                        fontColor={themeNews.linkColor}
+                        href={el.source.name}
+                      >
+                        <span>{el.source.name}</span>
+                      </NewsItemStyled>
+                    </StyledFlexDiv>
+                    <StyledFlexDiv>
+                      <Item.Extra>
+                        <span>{el.publishedAt}</span>
+                      </Item.Extra>
+                    </StyledFlexDiv>
+
                   </StyledFlexDiv>
-                  <StyledFlexDiv fontWeight='bold'>
-                    <Item.Extra>
-                      <span>{el.publishedAt}</span>
-                    </Item.Extra>
-                  </StyledFlexDiv>
-                </StyledFlexDiv>
-              </Item.Content>
-            </Item>
-          </Item.Group>
-        </NewsWrapper>
-      )}
+                </Item.Content>
+              </Item>
+            </Item.Group>
+          </NewsWrapper>
+        ) : <CustomNews />}
+      </Scrollbars>
     </>);
-}
-  ;
+};
 
 NewsBlock.propTypes = {
   news: PropTypes.array.isRequired,

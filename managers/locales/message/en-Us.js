@@ -16,5 +16,7 @@ export default {
     russian: 'Russian',
     chooseCategory: 'Choose a news category',
     addNewCategory: 'Add news category',
+    customNewsError: 'Sorry we don\'t have any news for you',
+    news: '{currentCategory} news',
   },
 };

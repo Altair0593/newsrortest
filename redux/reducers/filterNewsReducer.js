@@ -1,12 +1,13 @@
+import moment from 'moment';
 import actionTypes from '../actionsType/actionTypes';
 
-const currentDate = new Date();
+const currentDay = moment().day();
 
 export const initialState = {
-  dateFrom: currentDate,
-  dateTo: currentDate,
+  dateFrom: moment().isoWeekday(currentDay - 7).valueOf(),
+  dateTo: moment().isoWeekday(currentDay).valueOf(),
   language: 'en',
-  category: 'sport',
+  category: 'trump',
   defaultActivePage: 1,
   totalPages: 10,
 };
@@ -32,6 +33,15 @@ export const filterNewsReducer = (state = initialState, action) => {
       return {
         ...state,
         defaultActivePage: action.payload,
+      };
+    case actionTypes.PUT_TOTAL_RESULT_IN_STORE:
+      return {
+        ...state,
+        totalPages: action.payload,
+      };
+    case actionTypes.RESET_STORE:
+      return {
+        ...initialState,
       };
     default:
       return state;

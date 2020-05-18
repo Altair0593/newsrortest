@@ -11,6 +11,10 @@ export const newsReducer = (state = initialState, action) => {
         ...state,
         newsData: action.payload,
       };
+    case actionTypes.RESET_STORE:
+      return {
+         ...initialState,
+      };
     default:
       return state;
   }

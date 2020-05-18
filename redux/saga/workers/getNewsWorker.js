@@ -3,9 +3,9 @@ import { notificationSuccess, notificationError } from './helpers/notification';
 
 import rout from 'constants/apiConst';
 import { getRequestSender } from './helpers/request';
-import { putNewsInStore, putTotalPages } from 'redux/actions/actions';
+import { putNewsInStore, putTotalPagesInStore } from 'redux/actions/actions';
 import * as filterSelectors from 'redux/selectors/filterNews';
-import * as helpers from './helpers/formatDate';
+import * as helpers from './helpers/formatData';
 
 export function* getNewsWorker() {
   try {
@@ -19,12 +19,13 @@ export function* getNewsWorker() {
     const dateFromFormatted = yield call(helpers.formatDatePicker, dateFrom);
 
     const path = `${rout.url}${category}&from=${dateFromFormatted}&to=${dateToFormatted}&language=${language}&sortBy=publishedAt&pageSize=10&page=${activePage}&${rout.apiKey}`;
-
     const response = yield call(getRequestSender, path);
-    const { articles } = response.data;
-    const newResponse = yield call(helpers.formatPublishedDate, articles);
-    if (newResponse) {
-      yield put(putNewsInStore(newResponse));
+    const { articles, totalResults } = response.data;
+    const newArticles = yield call(helpers.formatArticles, articles);
+    const totalPagesResult = yield call(helpers.getTotalPages, totalResults);
+    if (newArticles) {
+      yield put(putNewsInStore(newArticles));
+      yield put(putTotalPagesInStore(totalPagesResult));
       yield call(notificationSuccess, 'News was loaded');
     } else {
       yield call(notificationError, 'News wasn\'t loaded');

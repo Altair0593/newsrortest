@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Container } from 'semantic-ui-react';
+import { Container, Item, Menu } from 'semantic-ui-react';
 import colors from 'managers/themeManager/colorMatrix';
 
 export const sizesStyles = css`
@@ -7,13 +7,22 @@ export const sizesStyles = css`
   ${({ padding = '0' }) => padding && `padding: ${padding}`};
   ${({ height }) => height && `height: ${height}`};
   ${({ width }) => width && `width: ${width}`};
-  ${({ maxHeight }) => maxHeight && `maxHeight: ${maxHeight}`};
-  ${({ maxWidth }) => maxWidth && `maxWidth: ${maxWidth}`};
+  ${({ maxHeight }) => maxHeight && `max-height: ${maxHeight}`};
+  ${({ maxWidth }) => maxWidth && `max-width: ${maxWidth}`};
   ${({ minWidth }) => minWidth && `minWidth: ${minWidth}`};
 `;
 export const fontStyles = css`
 ${({ fontWeight }) => fontWeight && `font-weight: ${fontWeight}`};
 ${({ fontSize }) => fontSize && `font-size: ${fontSize}`};
+${({ fontColor }) => fontColor && `color: ${fontColor}`};
+`;
+
+export const hoverStyles = css`
+ :hover {
+  transform: scale(1.1);
+  color: ${colors.color__26};
+  border-bottom: 2px solid ${colors.color__26};
+}
 `;
 
 export const flexStyles = css`
@@ -37,6 +46,7 @@ export const StyledFlexDiv = styled.div`
 
 export const NewsWrapper = styled(StyledFlexDiv)`
   display: block;
+  ${({ hasBackground }) => hasBackground && `background-color: rgba(${colors.color__20})`};
 `;
 
 export const MainWrapper = styled(StyledFlexDiv)`
@@ -46,15 +56,15 @@ export const MainWrapper = styled(StyledFlexDiv)`
   ${({ hasMinHeight }) => hasMinHeight && `min-height: ${hasMinHeight}`};
   ${({ hasBgImages }) => hasBgImages && `background-image: url(images/mainBg.jpg)`};
   ${({ hasFlexWrap }) => hasFlexWrap && `flex-wrap: wrap`};
-  background-size: 120%;
+  ${({ hasBgSize }) => hasBgSize && `background-size: ${hasBgSize}`};
+  ${({ hasBgAttachment }) => hasBgAttachment && `background-attachment: ${hasBgAttachment}`};
+  ${({ hasBgPosition }) => hasBgPosition && `background-position: ${hasBgPosition}`};
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
 `;
 
 export const MainContainer = styled(Container)`
   &&&& {
-  ${({ hasBgColor }) => hasBgColor && `background-color: ${colors.color__04}`}
+  ${({ hasBgColor }) => hasBgColor && `background-color: ${hasBgColor}`}
   }
 `;
 
@@ -68,5 +78,21 @@ export const CategoryCardWrapper = styled(MainWrapper)`
   transition: all .2s ease-in-out;
   :hover {
     transform: scale(1.1)
+  }
+`;
+
+export const MenuItemStyled = styled(Menu.Item)`
+  &&&& {
+    ${fontStyles}
+    :hover {
+      color: ${colors.color__14};
+    }
+  }
+`;
+
+export const NewsItemStyled = styled(Item.Extra)`
+  &&&& {
+  ${fontStyles}
+  ${hoverStyles}
   }
 `;

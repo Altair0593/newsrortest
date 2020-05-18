@@ -9,6 +9,10 @@ export const topicWorkerHelper = (action, topics) => {
     name: newTopic,
     category: newTopic.toLowerCase(),
     dataAt: `data-at-${newTopic.toLowerCase()}-category`,
+    bgColor: 'otherBgColor',
+    imgSrc: '/images/other.svg',
+    titleBg: 'categoryTitle',
+    textColor: 'textColor',
   };
   const result = topics.find(({ name }) => name === newTopic);
   if (result === undefined && newTopic.length) {

@@ -21,8 +21,16 @@ export default {
   },
   newsPage: {
     mainBgColor: colorMatrix.color__01,
-    containerBgColor: colorMatrix.color__04,
+    containerBgColor: colorMatrix.color__17,
     boxShadow: colorMatrix.color__02,
     datePickerBorder: colorMatrix.color__02,
+    linkColor: colorMatrix.color__26,
+    newsBgColor: colorMatrix.color__20,
+    headerNewsColor: colorMatrix.color__25,
+    newsGradBgGrey: colorMatrix.color__19,
+    filterBlockBg: colorMatrix.color__21,
+    buttonBg: colorMatrix.color__22,
+    buttonBgHover: colorMatrix.color__23,
+    textColor: colorMatrix.color__04,
   },
 };

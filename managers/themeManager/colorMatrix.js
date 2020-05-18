@@ -12,9 +12,16 @@ export default {
     color__11: '#dae8bf', //bitcoin
     color__12: '#ccc6bd', //science
     color__13: '#fff174', //travel
-    color__14: '#f6f6f6', //other
+    color__14: '#FFECE6AF', //other
     color__15: '#f6f5f0', //other
     color__16: '#7a6951', //textColor
     color__17: '157, 157, 156, .8', // container BG
     color__18: '#ffcc00', //food
+    color__19: '#808080', // container BG news
+    color__20: '227,227,237, 1',
+    color__21: '#493f2a', //news page bg
+    color__22: '#f68851',
+    color__23: '#de6224',
+    color__25: '#000',
+    color__26: '#ff8000',
 };

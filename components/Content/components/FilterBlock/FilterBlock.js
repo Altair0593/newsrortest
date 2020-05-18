@@ -1,14 +1,25 @@
-import React from 'react';
+import { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 import DatePicker from './DatePicker';
 import LanguagePicker from './LanguagePicker';
-import { StyledFlexDiv } from 'components/Content/styled';
+import { StyledFlexDiv, MainWrapper } from 'components/Content/styled';
 
-const FilterBlock = () => (
+const FilterBlock = () => {
+  const themeNews = useContext(ThemeContext).newsPage;
+
+  return (
     <>
-      <StyledFlexDiv>
-        <DatePicker/>
-      </StyledFlexDiv>
-      <LanguagePicker/>
-    </>);
+      <MainWrapper
+        bgColorContainer={themeNews.filterBlockBg}
+        flexDirection='column'
+      >
+        <StyledFlexDiv>
+          <DatePicker/>
+        </StyledFlexDiv>
+        <LanguagePicker/>
+      </MainWrapper>
+    </>
+  );
+};
 
 export default React.memo(FilterBlock);

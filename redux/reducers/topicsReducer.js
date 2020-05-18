@@ -12,6 +12,10 @@ export const topicsReducer = (state = initialState, action) => {
         ...state,
         topicsData: [...state.topicsData, action.payload],
       };
+    case actionTypes.RESET_STORE:
+      return {
+        ...initialState,
+      };
     default:
       return state;
   }

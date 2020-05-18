@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import { useContext } from 'react';
 import { Menu, Flag } from 'semantic-ui-react';
+import { ThemeContext } from 'styled-components';
 import PropTypes from 'prop-types';
-import { StyledFlexDiv } from 'components/Content/styled';
+import { StyledFlexDiv, MenuItemStyled } from 'components/Content/styled';
 import { FormattedMessage } from 'react-intl';
 
-const LanguagePicker = ({ languagePickerButtons, changeLanguage, getDefaultNews }) => {
-  const [activeItem, setActiveItem] = useState('');
+const LanguagePicker = ({
+  category,
+  getDefaultNews,
+  putLanguageInStore,
+  languagePickerButtons,
+}) => {
+  const themeNews = useContext(ThemeContext).newsPage;
 
   const changeLanguageState = (event, { value }) => {
-    setActiveItem(value);
-    changeLanguage(value);
+    putLanguageInStore(value);
     getDefaultNews();
   };
 
@@ -18,13 +23,13 @@ const LanguagePicker = ({ languagePickerButtons, changeLanguage, getDefaultNews 
       {languagePickerButtons.map(el =>
         <StyledFlexDiv key={el.id} width='150px'>
           <Menu text>
-            <Menu.Item
-              active={activeItem === el.value}
+            <MenuItemStyled
+              active={category === el.value}
               onClick={changeLanguageState}
               value={el.value}
               data-at={el.dataAt}
               id={el.id}
-              color={'red'}
+              fontColor={themeNews.textColor}
             >
               <Flag
                 name={el.flag}
@@ -33,7 +38,7 @@ const LanguagePicker = ({ languagePickerButtons, changeLanguage, getDefaultNews 
                 id={el.content}
                 defaultMessage='Add Topic'
               />
-            </Menu.Item>
+            </MenuItemStyled>
           </Menu>
         </StyledFlexDiv>
       )}
@@ -42,7 +47,8 @@ const LanguagePicker = ({ languagePickerButtons, changeLanguage, getDefaultNews 
 };
 
 LanguagePicker.propTypes = {
-  changeLanguage: PropTypes.func.isRequired,
+  category: PropTypes.string.isRequired,
+  putLanguageInStore: PropTypes.func.isRequired,
   getDefaultNews: PropTypes.func.isRequired,
   languagePickerButtons: PropTypes.array.isRequired,
 };

@@ -8,6 +8,10 @@ describe('<Header/>', () => {
     topics: topics,
     headerModalButton: mockDataConfig.headerModalButton,
     headerModalText: mockDataConfig.headerModalText,
+    addNewTopic: jest.fn(() => true),
+    currentCategory: 'currentCategory',
+    getDefaultNews: jest.fn(() => true),
+    putCategoryInStore: jest.fn(() => true),
   };
 
   beforeEach(() => {

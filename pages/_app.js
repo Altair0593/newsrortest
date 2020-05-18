@@ -59,7 +59,9 @@ App.getInitialProps = async ({ Component, ctx }) => {
 
 App.propTypes = {
   Component: PropTypes.func.isRequired,
-  pageProps: PropTypes.bool.isRequired,
+  pageProps: PropTypes.oneOfType(
+    [PropTypes.bool, PropTypes.object,
+    ]),
   store: PropTypes.object.isRequired,
   locale: PropTypes.string.isRequired,
   translate: PropTypes.object.isRequired,
