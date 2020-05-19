@@ -3,7 +3,7 @@ import { ThemeContext } from 'styled-components';
 import PropTypes from 'prop-types';
 import { useIntl } from 'react-intl';
 import { StyledFlexDiv } from 'components/Content/styled';
-import { DatePickerStyled } from './styled';
+import { DatePickerStyled, StyledTittle } from './styled';
 import { ButtonStyled } from 'styled';
 import { checkDates } from 'utils/validation';
 
@@ -16,6 +16,8 @@ const DatePickers = ({
  getDefaultNews,
  datePickerInputs,
  datePickerButton,
+ changeActivePage,
+ currentCategory,
 }) => {
   const themeNews = useContext(ThemeContext).newsPage;
   const intl = useIntl();
@@ -33,6 +35,7 @@ const DatePickers = ({
       changeIsError(true);
       return;
     }
+    changeActivePage(1);
     getDefaultNews();
   };
 
@@ -42,16 +45,20 @@ const DatePickers = ({
 
   return (
     <>
+      <StyledTittle size='large'>
+        {intl.formatMessage({ id: 'news' }, { currentCategory })}
+      </StyledTittle>
       {datePickerInputs.map(el =>
-        <StyledFlexDiv marginSmall='20px 10px' key={el.id}>
+        <StyledFlexDiv marginSmall='5px 10px' key={el.id}>
           <DatePickerStyled
-            border={!isError ? themeNews.datePickerBorder : themeNews.redBorder }
+            border={!isError ? themeNews.datePickerBorder : themeNews.redBorder}
             name={el.name}
             dateFormat={el.dateFormat}
             maxDate={new Date()}
             selected={el.name === 'dateFrom' ? dateFrom : dateTo}
             onChange={el.name === 'dateFrom' ? changeDateFilterFrom : changeDateFilterTo}
             onFocus={handleChangeIsError}
+            data-at={el.dataAt}
           />
         </StyledFlexDiv>
       )}
@@ -75,7 +82,9 @@ DatePickers.propTypes = {
   changeIsError: PropTypes.func.isRequired,
   getDefaultNews: PropTypes.func.isRequired,
   putDateInStore: PropTypes.func.isRequired,
+  currentCategory: PropTypes.string.isRequired,
   datePickerInputs: PropTypes.array.isRequired,
+  changeActivePage: PropTypes.func.isRequired,
   datePickerButton: PropTypes.object.isRequired,
 };
 

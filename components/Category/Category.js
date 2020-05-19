@@ -64,7 +64,11 @@ const Category = ({
         >
           <Link href='/news'>
             <a>
-              <StyledImage size='tiny' src='images/logo.svg'/>
+              <StyledImage
+                size='tiny'
+                src='images/logo.svg'
+                data-at='logo'
+              />
             </a>
           </Link>
           <Title
@@ -82,7 +86,8 @@ const Category = ({
             <Button
               color='brown'
               onClick={changeModalState}
-              content={intl.formatMessage({ id: 'addNewCategory' })}
+              content={intl.formatMessage({ id: 'addTopic' })}
+              data-at='at-category-add-button'
             />
           : null}
           </StyledFlexDiv>
@@ -106,6 +111,7 @@ const Category = ({
               mainBgColor={themeCategory[item.bgColor]}
               titleBgColor={themeCategory[item.titleBg]}
               titleFontColor={themeCategory[item.bgColor]}
+              dataAttribute={item.dataAt}
             />)
             : null}
         </MainWrapper>

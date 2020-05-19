@@ -13,6 +13,7 @@ const CategoryItem = ({
  marginSmall,
  titleBgColor,
  mainWrapWidth,
+ dataAttribute,
  onClickCallback,
  }) =>
   <CategoryCardWrapper
@@ -22,6 +23,7 @@ const CategoryItem = ({
     onClick={onClickCallback}
     marginSmall={marginSmall}
     bgColorContainer={mainBgColor}
+    data-at={dataAttribute}
   >
     <StyledFlexDiv padding='15px 0'
      id={category}
@@ -30,6 +32,8 @@ const CategoryItem = ({
         size='small'
         src={imageUrl}
         id={category}
+        alt={category}
+        title={category}
       />
     </StyledFlexDiv>
     <ContainerWithBrRadius
@@ -61,6 +65,7 @@ CategoryItem.propTypes = {
   name: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
+  dataAttribute: PropTypes.string.isRequired,
 };
   
 export default React.memo(CategoryItem);

@@ -11,6 +11,7 @@ describe('DatePicker', () => {
       datePickerInputs: config.datePickerInputs,
       datePickerButton: config.datePickerButton,
       isError: true,
+      changeActivePage: jest.fn(() => true),
       changeIsError: jest.fn(x => true),
       getDefaultNews: jest.fn(x => true),
       putDateInStore: jest.fn(x => true),

@@ -1,41 +1,44 @@
 import { useContext, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { ThemeContext } from 'styled-components';
+import PropTypes from 'prop-types';
 import Header from './components/Header';
 import NewsBlock from './components/NewsBlock';
 import Pagination from './components/Pagination';
 import FilterBlock from './components/FilterBlock/FilterBlock';
 import { CustomNotify } from 'libs/CustomNotify/CustomNotify';
 import { MainWrapper, MainContainer } from './styled';
-import { resetStoreToDefault } from 'redux/actions/actions';
 
-const Content = () => {
+const Content = ({ resetStoreToDefault }) => {
   const themeNews = useContext(ThemeContext).newsPage;
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    return () => dispatch(resetStoreToDefault());
-  });
+    return () => resetStoreToDefault();
+  }, []);
 
   return (
     <MainWrapper
       display='block'
       hasBgImages
-      height='100vh'
       hasBgSize='120%'
       flexDirection='column'
       hasBgPosition='center'
       hasBgAttachment='fixed'
     >
+      <MainContainer hasHeight='45px'>
+        <Header />
+      </MainContainer>
       <MainContainer hasBgColor={`rgba(${themeNews.containerBgColor})`}>
-        <Header/>
-        <FilterBlock/>
-        <NewsBlock/>
-        <Pagination/>
-        <CustomNotify/>
+        <FilterBlock />
+        <NewsBlock />
+        <Pagination />
+        <CustomNotify />
       </MainContainer>
     </MainWrapper>
   );
+};
+
+Content.propTypes = {
+  resetStoreToDefault: PropTypes.func.isRequired,
 };
 
 export default Content;

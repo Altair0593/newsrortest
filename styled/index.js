@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Button, Image } from 'semantic-ui-react';
+import { Button, Image, Item } from 'semantic-ui-react';
 
 export const fontStyles = css`
   ${({ fontWeight }) => fontWeight && `font-weight: ${fontWeight}`};
@@ -26,5 +26,15 @@ export const ButtonStyled = styled(Button)`
 export const StyledImage = styled(Image)`
   &&&& {
     cursor: pointer;
+    transition: all .2s ease-in-out;
+    :hover {
+      transform: scale(1.2);
+    }
+  };
+`;
+
+export const StyledItemMeta = styled(Item.Meta)`
+  &&&& {
+    user-select: none
   };
 `;

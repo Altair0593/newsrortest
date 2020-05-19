@@ -1,14 +1,14 @@
-import CustomNews from '../CustomNews';
+import ErrorBlock from '../ErrorBlock';
 
 describe('CustomNews render', () => {
   let wrapper;
-  
+
   beforeEach(() => {
-    wrapper = shallowSmart(<CustomNews />);
+    wrapper = shallowSmart(<ErrorBlock />);
   });
 
   it('CustomNews mountRender', () => {
-    mountSmart(<CustomNews />);
+    mountSmart(<ErrorBlock />);
   });
 
   it('NewsBlock snapshot created, should rendered correctly', () => {

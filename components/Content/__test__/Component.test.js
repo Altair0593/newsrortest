@@ -1,25 +1,23 @@
 import configureStore from 'redux-mock-store';
-import Content from '../Content';
-import Header from 'components/Content/components/Header';
+import Content from '../index';
+import Header from 'components/Content/components/Header/Header';
 import FilterBlock from '../components/FilterBlock/FilterBlock';
-import NewsBlock from '../components/NewsBlock';
-import Pagination from '../components/Pagination';
+import NewsBlock from '../components/NewsBlock/NewsBlock';
+import Pagination from '../components/Pagination/Pagination';
+import mockInitialState from '__mocks__/mockInitialState';
+
+jest.mock('../components/FilterBlock/FilterBlock', () => 'FilterBlock');
+jest.mock('components/Content/components/Header/Header', () => 'HeaderBlock');
+jest.mock('../components/NewsBlock/NewsBlock', () => 'NewsBlockPage');
+jest.mock('../components/Pagination/Pagination', () => 'PaginationBlock');
 
 describe('Content render correctly', () => {
   const mockStore = configureStore();
-  const store = mockStore({});
+  const store = mockStore(mockInitialState);
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallowWithTheme(<Content/>);
-  });
-
-  it('Content render correctly with create snapshot (shallow)', () => {
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('Header mount render', () => {
-    expect(wrapper.find(Header)).toHaveLength(1);
+    wrapper = mountSmart(<Content/>, store);
   });
 
   it('FilterBlock mount render', () => {
@@ -27,6 +25,11 @@ describe('Content render correctly', () => {
   });
 
   it('Header mount render', () => {
+    console.log(wrapper.debug())
+    expect(wrapper.find(Header)).toHaveLength(1);
+  });
+
+  it('NewsBlock mount render', () => {
     expect(wrapper.find(NewsBlock)).toHaveLength(1);
   });
 

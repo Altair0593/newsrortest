@@ -7,6 +7,7 @@ import * as actions from 'redux/actions/actions';
 const mapStateToProps = state => ({
   totalPages: filterNewsSelector.getTotalPages(state),
   news: newsSelector.getNews(state),
+  currentPage: filterNewsSelector.getActivePage(state),
 });
 
 const mapDispatchToProps = dispatch => ({

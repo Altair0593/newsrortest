@@ -14,9 +14,9 @@ const FilterBlock = () => {
         flexDirection='column'
       >
         <StyledFlexDiv>
-          <DatePicker/>
+          <DatePicker />
         </StyledFlexDiv>
-        <LanguagePicker/>
+        <LanguagePicker />
       </MainWrapper>
     </>
   );

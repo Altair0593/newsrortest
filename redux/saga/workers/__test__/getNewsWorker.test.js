@@ -40,13 +40,13 @@ describe('getNewsWorker with action payload', () => {
   it('getNewsWorker call dateToFormatted', () => {
     const payload = undefined;
     const actual = generator.next();
-    expect(actual.value).toEqual(call(helpers.formatDatePicker, payload));
+    expect(actual.value).toEqual(call(helpers.formatDatePickerFrom, payload));
   });
 
   it('getNewsWorker call dateFromFormatted', () => {
     const payload = undefined;
     const actual = generator.next();
-    expect(actual.value).toEqual(call(helpers.formatDatePicker, payload));
+    expect(actual.value).toEqual(call(helpers.formatDatePickerTo, payload));
   });
 
   it('getNewsWorker call request', () => {

@@ -1,42 +1,13 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Container, Item, Menu } from 'semantic-ui-react';
 import colors from 'managers/themeManager/colorMatrix';
-
-export const sizesStyles = css`
-  ${({ margin = '0' }) => margin && `margin: ${margin}`};
-  ${({ padding = '0' }) => padding && `padding: ${padding}`};
-  ${({ height }) => height && `height: ${height}`};
-  ${({ width }) => width && `width: ${width}`};
-  ${({ maxHeight }) => maxHeight && `max-height: ${maxHeight}`};
-  ${({ maxWidth }) => maxWidth && `max-width: ${maxWidth}`};
-  ${({ minWidth }) => minWidth && `minWidth: ${minWidth}`};
-`;
-export const fontStyles = css`
-${({ fontWeight }) => fontWeight && `font-weight: ${fontWeight}`};
-${({ fontSize }) => fontSize && `font-size: ${fontSize}`};
-${({ fontColor }) => fontColor && `color: ${fontColor}`};
-`;
-
-export const hoverStyles = css`
- :hover {
-  transform: scale(1.1);
-  color: ${colors.color__26};
-  border-bottom: 2px solid ${colors.color__26};
-}
-`;
-
-export const flexStyles = css`
-  display: flex;
-  align-items: ${({ alignItems = 'center' }) => alignItems};
-  ${({ flexDirection }) => flexDirection && `flex-direction: ${flexDirection}`};
-  justify-content: ${({ justifyContent = 'center' }) => justifyContent};
-`;
+import * as mixins from './mixins';
 
 export const StyledFlexDiv = styled.div`
   &&&& {
-    ${flexStyles}
-    ${sizesStyles}
-    ${fontStyles}
+    ${mixins.flexStyles}
+    ${mixins.sizesStyles}
+    ${mixins.fontStyles}
     ${({ hasFocus }) => `border-color: ${hasFocus ? hasFocus : 'none'}`};
     ${({ marginSmall }) => marginSmall && `margin: ${marginSmall}`};
     ${({ display }) => display && `display: ${display}`};
@@ -64,7 +35,9 @@ export const MainWrapper = styled(StyledFlexDiv)`
 
 export const MainContainer = styled(Container)`
   &&&& {
-  ${({ hasBgColor }) => hasBgColor && `background-color: ${hasBgColor}`}
+  ${({ hasBgColor }) => hasBgColor && `background-color: ${hasBgColor}`};
+  position: relative;
+  ${({ hasHeight }) => hasHeight && `height: ${hasHeight}`};
   }
 `;
 
@@ -83,7 +56,9 @@ export const CategoryCardWrapper = styled(MainWrapper)`
 
 export const MenuItemStyled = styled(Menu.Item)`
   &&&& {
-    ${fontStyles}
+    ${mixins.fontStyles};
+    cursor: pointer;
+    margin: 10px 0;
     :hover {
       color: ${colors.color__14};
     }
@@ -92,7 +67,7 @@ export const MenuItemStyled = styled(Menu.Item)`
 
 export const NewsItemStyled = styled(Item.Extra)`
   &&&& {
-  ${fontStyles}
-  ${hoverStyles}
+  ${mixins.fontStyles}
+  ${mixins.hoverStyles}
   }
 `;

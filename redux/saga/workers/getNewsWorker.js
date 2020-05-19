@@ -15,8 +15,8 @@ export function* getNewsWorker() {
     const language = yield select(filterSelectors.getLanguage);
     const activePage = yield select(filterSelectors.getActivePage);
 
-    const dateToFormatted = yield call(helpers.formatDatePicker, dateTo);
-    const dateFromFormatted = yield call(helpers.formatDatePicker, dateFrom);
+    const dateFromFormatted = yield call(helpers.formatDatePickerFrom, dateFrom);
+    const dateToFormatted = yield call(helpers.formatDatePickerTo, dateTo);
 
     const path = `${rout.url}${category}&from=${dateFromFormatted}&to=${dateToFormatted}&language=${language}&sortBy=publishedAt&pageSize=10&page=${activePage}&${rout.apiKey}`;
     const response = yield call(getRequestSender, path);

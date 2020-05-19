@@ -8,8 +8,9 @@ describe('LanguagePicker', () => {
     props = {
       languagePickerButtons: config.languagePickerButtons,
       putLanguageInStore: jest.fn(x => true),
-      category: 'category',
+      language: 'language',
       getDefaultNews: jest.fn(x => true),
+      changeActivePage: jest.fn(() => true),
     };
   });
 

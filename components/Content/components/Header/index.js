@@ -16,6 +16,7 @@ const mapDispatchToProps = dispatch => ({
   addNewTopic: payload => dispatch(actions.addNewTopic(payload)),
   getDefaultNews: () => dispatch(actions.getDefaultNews()),
   putCategoryInStore: payload => dispatch(actions.putCategoryInStore(payload)),
+  changeActivePage: payload => dispatch(actions.changeActivePage(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

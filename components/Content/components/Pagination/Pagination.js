@@ -1,13 +1,18 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Pagination } from 'semantic-ui-react';
 import { StyledFlexDiv } from 'components/Content/styled';
 
-const paginationRender = ({ totalPages, changeActivePage, getDefaultNews, news }) => {
-  const [activeItem, setActiveItem] = useState('');
-
+const paginationRender = ({
+  news,
+  totalPages,
+  currentPage,
+  getDefaultNews,
+  changeActivePage,
+  }) => {
   const changePageState = (event, { activePage }) => {
-    setActiveItem(activePage);
+    if (currentPage === activePage) {
+      return;
+    }
     changeActivePage(activePage);
     getDefaultNews();
   };
@@ -15,9 +20,10 @@ const paginationRender = ({ totalPages, changeActivePage, getDefaultNews, news }
     <StyledFlexDiv>
       {news.length >= 10
         ? <Pagination
-          activePage={activeItem}
+          activePage={currentPage}
           totalPages={totalPages}
           onPageChange={changePageState}
+          data-at='data-at-page-button'
         />
         : null
       }
@@ -26,10 +32,11 @@ const paginationRender = ({ totalPages, changeActivePage, getDefaultNews, news }
 };
 
 paginationRender.propTypes = {
-  news: PropTypes.array,
-  totalPages: PropTypes.number,
-  getDefaultNews: PropTypes.func,
-  changeActivePage: PropTypes.func,
+  news: PropTypes.array.isRequired,
+  totalPages: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  getDefaultNews: PropTypes.func.isRequired,
+  changeActivePage: PropTypes.func.isRequired,
 };
 
 export default paginationRender;

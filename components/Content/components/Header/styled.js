@@ -1,12 +1,9 @@
 import styled from 'styled-components';
-import { Header } from 'semantic-ui-react';
-import colors from 'managers/themeManager/colorMatrix';
+import { Container } from 'semantic-ui-react';
 
-export const StyledHeader = styled(Header)`
+export const HeaderWrapper = styled(Container)`
   &&&& {
-    color: ${colors.color__04};
-  }
-  ::first-letter {
-    text-transform: uppercase;
+    position: fixed;
+    z-index: 10;
   }
 `;
