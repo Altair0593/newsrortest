@@ -12,6 +12,6 @@ export function* addTopicWorker(action) {
     yield put(addNewTopicInStore(result));
     yield call(notificationSuccess, 'Success! Topic was added');
   } else {
-    yield call(notificationError, topics.length === topicsMaximum ? 'Sorry, you cant add more than 10 topics' : 'Topic already exists');
+    yield call(notificationError, topics.length === topicsMaximum ? 'Sorry, you cant add more than 10 topics' : 'Incorrect topic!');
   }
 }

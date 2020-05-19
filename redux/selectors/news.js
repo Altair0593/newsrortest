@@ -6,3 +6,8 @@ export const getNews = createSelector(
   getNewsStore,
   news => news.newsData
 );
+
+export const getIsLoadedValue = createSelector(
+  getNewsStore,
+  news => news.isLoaded
+);

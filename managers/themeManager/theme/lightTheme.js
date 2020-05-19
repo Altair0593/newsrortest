@@ -32,6 +32,7 @@ export default {
     buttonBg: colorMatrix.color__22,
     buttonBgHover: colorMatrix.color__23,
     textColor: colorMatrix.color__04,
-    redBorder: colorMatrix.color__24,
+    redBorder: colorMatrix.color__27,
+    spinnerColorTheme: colorMatrix.color__23,
   },
 };

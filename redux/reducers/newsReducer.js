@@ -2,6 +2,7 @@ import actionTypes from '../actionsType/actionTypes';
 
 export const initialState = {
   newsData: [],
+  isLoaded: false,
 };
 
 export const newsReducer = (state = initialState, action) => {
@@ -14,6 +15,11 @@ export const newsReducer = (state = initialState, action) => {
     case actionTypes.RESET_STORE:
       return {
          ...initialState,
+      };
+    case actionTypes.CHANGE_IS_LOADED:
+      return {
+        ...state,
+        isLoaded: action.payload,
       };
     default:
       return state;

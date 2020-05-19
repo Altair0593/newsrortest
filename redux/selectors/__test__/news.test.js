@@ -1,4 +1,4 @@
-import { getNewsStore, getNews } from '../news';
+import { getNewsStore, getNews, getIsLoadedValue } from '../news';
 
 describe('getNewsStore', () => {
   let state;
@@ -23,5 +23,14 @@ describe('getNews', () => {
     };
 
     expect(getNews.resultFunc(mockParameters.news)).toEqual(mockParameters.news.newsData);
+  });
+});
+
+describe('getIsLoadedValue', () => {
+  it('getIsLoadedValue work correct', () => {
+    const mockParameters = {
+      news: { newsData: 'newsData', isLoaded: false },
+    };
+    expect(getIsLoadedValue.resultFunc(mockParameters.news)).toEqual(mockParameters.news.isLoaded);
   });
 });

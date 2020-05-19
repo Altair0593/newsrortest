@@ -1,7 +1,7 @@
 import { topicsMaximum } from 'constants/topicsAmountConst';
 
 export const topicWorkerHelper = (action, topics) => {
-  if (topics.length === topicsMaximum) {
+  if (topics.length === topicsMaximum || action.payload.length < 3) {
     return false;
   }
   const newTopic = action.payload;

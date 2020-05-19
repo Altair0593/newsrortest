@@ -71,3 +71,15 @@ export const NewsItemStyled = styled(Item.Extra)`
   ${mixins.hoverStyles}
   }
 `;
+
+export const SpinnerWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+export const NewsContainer = styled.div`
+  position: relative;
+  min-height: 1080px;
+`;

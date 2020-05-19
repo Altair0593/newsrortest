@@ -23,6 +23,7 @@ const Content = ({ resetStoreToDefault }) => {
       flexDirection='column'
       hasBgPosition='center'
       hasBgAttachment='fixed'
+      hasMinHeight='1080px'
     >
       <MainContainer hasHeight='45px'>
         <Header />

@@ -14,5 +14,6 @@ export default keyMirror({
   PUT_TOTAL_RESULT_IN_STORE: null,
   CHANGE_TRANSLATE_LANGUAGE: null,
   CHANGE_IS_ERROR: null,
+  CHANGE_IS_LOADED: null,
   RESET_STORE: null,
 });

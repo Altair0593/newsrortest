@@ -25,4 +25,5 @@ export default {
     color__24: '#800000',
     color__25: '#000',
     color__26: '#ff8000',
+    color__27: '#ff0000',
 };
