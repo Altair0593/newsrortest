@@ -13,6 +13,6 @@ export default keyMirror({
   PUT_NEW_TOPIC_IN_STORE: null,
   PUT_TOTAL_RESULT_IN_STORE: null,
   CHANGE_TRANSLATE_LANGUAGE: null,
-  RESET_STORE: null,
   CHANGE_IS_ERROR: null,
+  RESET_STORE: null,
 });

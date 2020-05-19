@@ -2,6 +2,7 @@ import CustomNews from '../CustomNews';
 
 describe('CustomNews render', () => {
   let wrapper;
+  
   beforeEach(() => {
     wrapper = shallowSmart(<CustomNews />);
   });

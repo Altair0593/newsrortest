@@ -1,5 +1,5 @@
+import moment from 'moment';
 import * as regularExpression from './regularExpression';
-import moment from "moment";
 
 export const checkInputValue = (event) => {
   if (!event.key.match(regularExpression.textExpression)) {
@@ -13,5 +13,5 @@ export const checkInputValue = (event) => {
 };
 
 export const checkDates = (dateFromState, dateToState) => {
-  return moment(dateFromState).isAfter(dateToState);
+  return moment(dateFromState).isAfter(dateToState) || dateFromState === dateToState;
 };

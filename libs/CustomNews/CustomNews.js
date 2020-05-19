@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { ThemeContext } from 'styled-components';
-import { Item } from 'semantic-ui-react';
-import { StyledFlexDiv, NewsWrapper, NewsItemStyled } from 'components/Content/styled';
 import { useIntl } from 'react-intl';
+import { Item } from 'semantic-ui-react';
+import { ThemeContext } from 'styled-components';
+import { StyledFlexDiv, NewsWrapper, NewsItemStyled } from 'components/Content/styled';
 
 const CustomNews = () => {
   const themeNews = useContext(ThemeContext).newsPage;
@@ -27,7 +27,7 @@ const CustomNews = () => {
               >
                 <span>{intl.formatMessage({ id: 'customNewsError' })}</span>
               </NewsItemStyled>
-              <Item.Meta>Sorry we dont have any news</Item.Meta>
+              <Item.Meta>{intl.formatMessage({ id: 'customNewsError' })}</Item.Meta>
               <StyledFlexDiv justifyContent='space-between' padding='20px 0 0 0'>
                 <StyledFlexDiv>
                   <NewsItemStyled as='a'
@@ -41,7 +41,6 @@ const CustomNews = () => {
                     <span>{intl.formatMessage({ id: 'customNewsError' })}</span>
                   </Item.Extra>
                 </StyledFlexDiv>
-
               </StyledFlexDiv>
             </Item.Content>
           </Item>
