@@ -34,7 +34,7 @@ const LanguagePicker = ({
               value={el.value}
               data-at={el.dataAt}
               id={el.id}
-              fontColor={themeNews.textColor}
+              fontColor={language === el.value ? themeNews.languageColor : themeNews.textColor}
             >
               <Flag
                 name={el.flag}

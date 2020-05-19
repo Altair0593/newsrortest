@@ -59,6 +59,7 @@ export const MenuItemStyled = styled(Menu.Item)`
     ${mixins.fontStyles};
     cursor: pointer;
     margin: 10px 0;
+    ${({ colorText }) => colorText && `color: ${colorText}`}
     :hover {
       color: ${colors.color__14};
     }

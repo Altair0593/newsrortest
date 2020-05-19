@@ -13,5 +13,5 @@ export const checkInputValue = (event) => {
 };
 
 export const checkDates = (dateFromState, dateToState) => {
-  return moment(dateFromState).isAfter(dateToState) || dateFromState === dateToState;
+  return moment(dateFromState).isSameOrBefore(dateToState);
 };

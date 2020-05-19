@@ -5,7 +5,7 @@ export const formatArticles = (articles) => {
   articles.sourceUrl = '';
   return articles.map(el => {
     el.source.id = Date.now() + Math.random().toString(36).substring(2, 9);
-    el.publishedAt = moment.utc(el.publishedAt).format('HH:mm DD-MM-YYYY');
+    el.publishedAt = moment.utc(el.publishedAt).format('HH:mm DD MM YYYY');
     el.sourceUrl = el.url.match(regex);
     return el;
   });

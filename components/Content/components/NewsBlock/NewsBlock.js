@@ -33,16 +33,16 @@ const NewsBlock = ({ news, isLoaded }) => {
               {el.urlToImage
                 ? <Item.Image
                   size='small'
-                  alt={el.title}
-                  title={el.title}
+                  alt={el.source.name}
+                  title={el.source.name}
                   src={el.urlToImage}
                   href={el.url}
                   data-at='at-newscard-image'
                 />
                 : <Item.Image
                   size='small'
-                  alt={el.title}
-                  title={el.title}
+                  alt={el.source.name}
+                  title={el.source.name}
                   src='/images/news-default-image.png'
                   data-at='at-newscard-image-error'
                 />

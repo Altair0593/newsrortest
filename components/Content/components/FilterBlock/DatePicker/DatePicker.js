@@ -30,7 +30,7 @@ const DatePickers = ({
   };
 
   const setNewDate = () => {
-    const result = checkDates(dateTo, dateFrom);
+    const result = checkDates(dateFrom, dateTo);
     if (!result) {
       changeIsError(true);
       return;

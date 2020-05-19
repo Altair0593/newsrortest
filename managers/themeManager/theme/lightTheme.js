@@ -34,5 +34,6 @@ export default {
     textColor: colorMatrix.color__04,
     redBorder: colorMatrix.color__27,
     spinnerColorTheme: colorMatrix.color__23,
+    languageColor: colorMatrix.color__10,
   },
 };

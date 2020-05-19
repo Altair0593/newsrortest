@@ -15,7 +15,9 @@ const paginationRender = ({
     }
     changeActivePage(activePage);
     getDefaultNews();
+    window.scrollTo(0, 0);
   };
+
   return (
     <StyledFlexDiv>
       {news.length >= 10
