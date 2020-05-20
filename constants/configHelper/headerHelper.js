@@ -1,5 +1,5 @@
 export const headerModalButton = {
-    addTopic: 'addTopic',
+    addNewCategory: 'addNewCategory',
     back: 'back',
     add: 'add',
     };

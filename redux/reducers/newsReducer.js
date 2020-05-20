@@ -3,6 +3,7 @@ import actionTypes from '../actionsType/actionTypes';
 export const initialState = {
   newsData: [],
   isLoaded: false,
+  errorMessage: '',
 };
 
 export const newsReducer = (state = initialState, action) => {
@@ -20,6 +21,11 @@ export const newsReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoaded: action.payload,
+      };
+    case actionTypes.PUT_ERROR_IN_STORE:
+      return {
+        ...state,
+        errorMessage: action.payload,
       };
     default:
       return state;

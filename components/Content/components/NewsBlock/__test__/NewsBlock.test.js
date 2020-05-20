@@ -6,13 +6,15 @@ describe('NewsBlock render', () => {
 
   const props = {
     news: initialState,
+    isError: false,
+    errorMessage: 'errorMessage',
   };
   beforeEach(() => {
-    wrapper = shallowWithTheme(<NewsBlock {...props} />);
+    wrapper = shallowSmart(<NewsBlock {...props} />);
   });
 
   it('NewsBlock mountRender', () => {
-    mountRender(<NewsBlock {...props} />);
+    mountSmart(<NewsBlock {...props} />);
   });
 
   it('NewsBlock snapshot created, should rendered correctly', () => {

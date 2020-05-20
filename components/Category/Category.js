@@ -86,7 +86,7 @@ const Category = ({
             <Button
               color='brown'
               onClick={changeModalState}
-              content={intl.formatMessage({ id: 'addTopic' })}
+              content={intl.formatMessage({ id: 'addNewCategory' })}
               data-at='at-category-add-button'
             />
           : null}

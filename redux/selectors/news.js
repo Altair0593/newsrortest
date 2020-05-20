@@ -11,3 +11,8 @@ export const getIsLoadedValue = createSelector(
   getNewsStore,
   news => news.isLoaded
 );
+
+export const getErrorMessage = createSelector(
+  getNewsStore,
+  news => news.errorMessage
+);

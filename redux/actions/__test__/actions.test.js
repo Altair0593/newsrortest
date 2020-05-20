@@ -40,3 +40,12 @@ describe('putLanguageInStore', () => {
     expect(actions.putLanguageInStore(expected.payload)).toEqual(expected);
   });
 });
+
+describe('putErrorInStore', () => {
+  it('putErrorInStore, work correct', () => {
+    const expected = { type: actionTypes.PUT_ERROR_IN_STORE, payload: 'payload' };
+
+    expect(actions.putErrorInStore(expected.payload)).toEqual(expected);
+  });
+});
+

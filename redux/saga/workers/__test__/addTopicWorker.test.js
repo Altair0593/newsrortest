@@ -58,6 +58,6 @@ describe('addTopicWorker without action payload', () => {
 
   it('addTopicWorker call notificationError', () => {
     const actual = generator.next();
-    expect(actual.value).toEqual(call(notificationError, 'Incorrect topic'));
+    expect(actual.value).toEqual(call(notificationError, 'Incorrect topic!'));
   });
 });

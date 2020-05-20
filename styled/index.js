@@ -35,6 +35,8 @@ export const StyledImage = styled(Image)`
 
 export const StyledItemMeta = styled(Item.Meta)`
   &&&& {
-    user-select: none
+    ${fontStyles};
+    user-select: none; 
+    ${({ isTextAlign }) => isTextAlign && `text-align: ${isTextAlign}`}
   };
 `;

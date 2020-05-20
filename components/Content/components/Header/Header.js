@@ -72,7 +72,6 @@ const Header = ({
         </MainWrapper>
         {topics.map(item =>
           <Menu.Item
-            text
             key={item.name}
             name={item.name}
             active={activeItem === item.name}
@@ -94,8 +93,8 @@ const Header = ({
                 name='add'
               />
               <FormattedMessage
-                id={headerModalButton.addTopic}
-                defaultMessage='Add Topic'
+                id={headerModalButton.addNewCategory}
+                defaultMessage='Add news category'
               />
             </Menu.Item>
           </Menu.Menu>

@@ -1,6 +1,6 @@
 export default {
   headerModalButton: {
-    addTopic: 'addTopic',
+    addNewCategory: 'addNewCategory',
     back: 'back',
     add: 'add',
   },

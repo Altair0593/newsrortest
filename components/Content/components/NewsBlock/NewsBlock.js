@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import {useIntl} from "react-intl";
 import { ThemeContext } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Item } from 'semantic-ui-react';
@@ -13,8 +14,9 @@ import Spinner from 'libs/Spinner/Spinner';
 import ErrorBlock from 'libs/ErrorBlock/ErrorBlock';
 import { StyledItemMeta } from 'styled';
 
-const NewsBlock = ({ news, isLoaded }) => {
+const NewsBlock = ({ news, isLoaded, errorMessage }) => {
   const themeNews = useContext(ThemeContext).newsPage;
+  const intl = useIntl();
 
   const renderNews = () => (
     news.length
@@ -65,6 +67,7 @@ const NewsBlock = ({ news, isLoaded }) => {
                 <StyledFlexDiv justifyContent='space-between' padding='20px 0 0 0'>
                   <StyledFlexDiv>
                     <NewsItemStyled
+                      target='_blank'
                       as='a'
                       fontColor={themeNews.linkColor}
                       href={el.sourceUrl}
@@ -85,7 +88,12 @@ const NewsBlock = ({ news, isLoaded }) => {
           </Item.Group>
         </NewsWrapper>
       )
-      : <ErrorBlock/>
+      : <ErrorBlock
+        errorMessage={errorMessage
+          ? errorMessage
+          : intl.formatMessage({ id: 'customNewsError' })}
+        hasShadow={themeNews.boxShadow}
+      />
 );
 
   return (
@@ -93,7 +101,7 @@ const NewsBlock = ({ news, isLoaded }) => {
       <NewsContainer>
         {isLoaded
           ? <SpinnerWrapper>
-            <Spinner theme={themeNews}/>;
+            <Spinner theme={themeNews}/>
           </SpinnerWrapper>
           : renderNews()}
       </NewsContainer>
@@ -103,6 +111,7 @@ const NewsBlock = ({ news, isLoaded }) => {
 NewsBlock.propTypes = {
   news: PropTypes.array.isRequired,
   isLoaded: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string.isRequired,
 };
 
 export default NewsBlock;

@@ -1,4 +1,4 @@
-import { getNewsStore, getNews, getIsLoadedValue } from '../news';
+import * as newsSelectors from '../news';
 
 describe('getNewsStore', () => {
   let state;
@@ -8,29 +8,46 @@ describe('getNewsStore', () => {
   });
 
   it('getNewsStore work correct', () => {
-    expect(getNewsStore(state)).toEqual(state.news);
+    expect(newsSelectors.getNewsStore(state)).toEqual(state.news);
   });
 
   it('getNewsStore failed with incorrect data', () => {
-    expect(getNewsStore(state)).not.toEqual(state.state);
+    expect(newsSelectors.getNewsStore(state)).not.toEqual(state.state);
   });
 });
 
-describe('getNews', () => {
-  it('getNews work correct', () => {
-    const mockParameters = {
-      news: { newsData: 'newsData' },
-    };
+describe('News selectors', () => {
+  let mockParameters;
 
-    expect(getNews.resultFunc(mockParameters.news)).toEqual(mockParameters.news.newsData);
+  beforeEach(() => {
+    mockParameters = {
+      news: {
+        newsData: 'newsData',
+        errorMessage: 'errorMessage',
+        isLoaded: false,
+      },
+    };
   });
-});
 
-describe('getIsLoadedValue', () => {
-  it('getIsLoadedValue work correct', () => {
-    const mockParameters = {
-      news: { newsData: 'newsData', isLoaded: false },
-    };
-    expect(getIsLoadedValue.resultFunc(mockParameters.news)).toEqual(mockParameters.news.isLoaded);
+  describe('getNews', () => {
+    it('getNews work correct', () => {
+      expect(newsSelectors.getNews.resultFunc(mockParameters.news)).toEqual(mockParameters.news.newsData);
+    });
+
+    it('getNews work correct', () => {
+      expect(newsSelectors.getNews.resultFunc(mockParameters.news)).toEqual(mockParameters.news.newsData);
+    });
+  });
+
+  describe('getIsLoadedValue', () => {
+    it('getIsLoadedValue work correct', () => {
+      expect(newsSelectors.getIsLoadedValue.resultFunc(mockParameters.news)).toEqual(mockParameters.news.isLoaded);
+    });
+  });
+
+  describe('getErrorMessage', () => {
+    it('getErrorMessage work correct', () => {
+      expect(newsSelectors.getErrorMessage.resultFunc(mockParameters.news)).toEqual(mockParameters.news.errorMessage);
+    });
   });
 });

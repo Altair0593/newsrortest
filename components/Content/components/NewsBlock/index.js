@@ -6,6 +6,7 @@ import Component from './NewsBlock';
 const mapStateToProps = state => ({
   news: newsSelector.getNews(state),
   isLoaded: newsSelector.getIsLoadedValue(state),
+  errorMessage: newsSelector.getErrorMessage(state),
 });
 
 const mapDispatchToProps = dispatch => ({

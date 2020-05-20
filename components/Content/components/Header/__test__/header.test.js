@@ -12,6 +12,7 @@ describe('<Header/>', () => {
     currentCategory: 'currentCategory',
     getDefaultNews: jest.fn(() => true),
     putCategoryInStore: jest.fn(() => true),
+    changeActivePage: jest.fn(() => true),
   };
 
   beforeEach(() => {

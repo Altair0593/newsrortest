@@ -14,3 +14,4 @@ export const putTotalPagesInStore = payload => ({ type: actionTypes.PUT_TOTAL_RE
 export const resetStoreToDefault = () => ({ type: actionTypes.RESET_STORE });
 export const changeIsError = payload => ({ type: actionTypes.CHANGE_IS_ERROR, payload });
 export const changeIsLoaded = payload => ({ type: actionTypes.CHANGE_IS_LOADED, payload });
+export const putErrorInStore = payload => ({ type: actionTypes.PUT_ERROR_IN_STORE, payload });
