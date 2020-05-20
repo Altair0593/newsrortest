@@ -48,6 +48,7 @@ const Header = ({
     putCategoryInStore(name);
     changeActivePage(1);
     getDefaultNews();
+    window.scrollTo(0, 0);
   };
 
   const setNewTopicNameHelper = (e, name) => {

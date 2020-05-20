@@ -16,8 +16,9 @@ export const StyledFlexDiv = styled.div`
 `;
 
 export const NewsWrapper = styled(StyledFlexDiv)`
-  display: block;
+  ${mixins.sizesStyles}
   ${({ hasBackground }) => hasBackground && `background-color: rgba(${colors.color__20})`};
+  display: block;
 `;
 
 export const MainWrapper = styled(StyledFlexDiv)`
@@ -83,4 +84,12 @@ export const SpinnerWrapper = styled.div`
 export const NewsContainer = styled.div`
   position: relative;
   min-height: 1080px;
+`;
+
+export const NewsImageStyled = styled(Item.Image)`
+  &&&&{
+    & img{
+      height: 133px;
+    }
+  }
 `;

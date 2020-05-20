@@ -9,6 +9,7 @@ import {
   NewsItemStyled,
   SpinnerWrapper,
   NewsContainer,
+  NewsImageStyled,
 } from 'components/Content/styled';
 import Spinner from 'libs/Spinner/Spinner';
 import ErrorBlock from 'libs/ErrorBlock/ErrorBlock';
@@ -29,20 +30,19 @@ const NewsBlock = ({ news, isLoaded, errorMessage }) => {
           hasShadow={themeNews.boxShadow}
           hasBackground
           data-at='at-newscard-card'
+          height='185px'
         >
           <Item.Group>
             <Item>
               {el.urlToImage
-                ? <Item.Image
-                  size='small'
+                ? <NewsImageStyled
                   alt={el.source.name}
                   title={el.source.name}
                   src={el.urlToImage}
                   href={el.url}
                   data-at='at-newscard-image'
                 />
-                : <Item.Image
-                  size='small'
+                : <NewsImageStyled
                   alt={el.source.name}
                   title={el.source.name}
                   src='/images/news-default-image.png'
@@ -50,7 +50,14 @@ const NewsBlock = ({ news, isLoaded, errorMessage }) => {
                 />
               }
               <Item.Content>
+                <Item.Extra
+                  fontSize='20px'
+                  data-at='at-newscard-author'
+                >
+                  <span>{el.author ? el.author : el.source.name}</span>
+                </Item.Extra>
                 <NewsItemStyled
+                  target='_blank'
                   as='a'
                   href={el.url}
                   fontColor={themeNews.headerNewsColor}
