@@ -3,12 +3,11 @@ import { Pagination } from 'semantic-ui-react';
 import { StyledFlexDiv } from 'components/Content/styled';
 
 const paginationRender = ({
-  news,
   totalPages,
   currentPage,
   getDefaultNews,
   changeActivePage,
-  }) => {
+}) => {
   const changePageState = (event, { activePage }) => {
     if (currentPage === activePage) {
       return;
@@ -17,10 +16,9 @@ const paginationRender = ({
     getDefaultNews();
     window.scrollTo(0, 0);
   };
-
   return (
     <StyledFlexDiv>
-      {news.length >= 10
+      {totalPages > 1
         ? <Pagination
           activePage={currentPage}
           totalPages={totalPages}
@@ -34,7 +32,6 @@ const paginationRender = ({
 };
 
 paginationRender.propTypes = {
-  news: PropTypes.array.isRequired,
   totalPages: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   getDefaultNews: PropTypes.func.isRequired,

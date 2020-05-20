@@ -36,13 +36,13 @@ export const StyledImage = styled(Image)`
 export const StyledItemMeta = styled(Item.Meta)`
   &&&& {
     ${fontStyles};
-    ${({ isTextAlign }) => isTextAlign && `text-align: ${isTextAlign}`}
-    user-select: none;
+    ${({ isTextAlign }) => isTextAlign && `text-align: ${isTextAlign}`};
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;  
-    user-select: none; 
+    user-select: none;
+    min-height: 35px;
   };
 `;

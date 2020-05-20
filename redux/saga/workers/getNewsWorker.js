@@ -1,6 +1,5 @@
 import { put, call, select } from 'redux-saga/effects';
 import { notificationSuccess, notificationError } from './helpers/notification';
-
 import rout from 'constants/apiConst';
 import { getRequestSender } from './helpers/request';
 import * as actions from 'redux/actions/actions';
@@ -26,17 +25,9 @@ export function* getNewsWorker() {
 
     const { articles, totalResults } = response.data;
 
-    const newArticles = yield call(helpers.formatArticles, articles);
-    const totalPagesResult = yield call(helpers.getTotalPages, totalResults);
-
-    if (newArticles) {
-      yield put(actions.putNewsInStore(newArticles));
-      yield put(actions.putTotalPagesInStore(totalPagesResult));
-      yield put(actions.changeIsLoaded(false));
-      yield call(notificationSuccess, 'News was loaded');
-    } else {
-      yield call(notificationError, 'News wasn\'t loaded');
-    }
+    articles || articles.length
+      ? yield call(putNewsArticles, articles, totalResults)
+      : yield call(notificationError, 'News wasn\'t loaded');
   } catch (err) {
     if (err.response.data) {
       const { message } = err.response.data;
@@ -47,4 +38,15 @@ export function* getNewsWorker() {
     yield put(actions.putNewsInStore([]));
     yield call(notificationError, 'News wasn\'t loaded');
   }
+}
+
+export function* putNewsArticles(articles, totalResults) {
+  const newArticles = yield call(helpers.formatArticles, articles);
+  const totalPagesResult = yield call(helpers.getTotalPages, totalResults);
+  
+  yield put(actions.putNewsInStore(newArticles));
+  yield put(actions.putTotalPagesInStore(totalPagesResult));
+  yield put(actions.changeIsLoaded(false));
+  
+  yield call(notificationSuccess, 'News was loaded');
 }

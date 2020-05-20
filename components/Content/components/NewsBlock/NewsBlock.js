@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import {useIntl} from "react-intl";
+import { useIntl } from 'react-intl';
 import { ThemeContext } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Item } from 'semantic-ui-react';
@@ -19,7 +19,7 @@ const NewsBlock = ({ news, isLoaded, errorMessage }) => {
   const themeNews = useContext(ThemeContext).newsPage;
   const intl = useIntl();
 
-  const renderNews = () => (
+  const renderNews = () => 
     news.length
       ? news.map(el =>
         <NewsWrapper
@@ -40,11 +40,14 @@ const NewsBlock = ({ news, isLoaded, errorMessage }) => {
                   title={el.source.name}
                   src={el.urlToImage}
                   href={el.url}
+                  target='_blank'
                   data-at='at-newscard-image'
                 />
                 : <NewsImageStyled
                   alt={el.source.name}
                   title={el.source.name}
+                  target='_blank'
+                  href={el.url}
                   src='/images/news-default-image.png'
                   data-at='at-newscard-image-error'
                 />
@@ -54,7 +57,7 @@ const NewsBlock = ({ news, isLoaded, errorMessage }) => {
                   fontSize='20px'
                   data-at='at-newscard-author'
                 >
-                  <span>{el.author ? el.author : el.source.name}</span>
+                  <span>{el.author ? el.author : intl.formatMessage({ id: 'unknownAuthor' })}</span>
                 </Item.Extra>
                 <NewsItemStyled
                   target='_blank'
@@ -101,7 +104,7 @@ const NewsBlock = ({ news, isLoaded, errorMessage }) => {
           : intl.formatMessage({ id: 'customNewsError' })}
         hasShadow={themeNews.boxShadow}
       />
-);
+;
 
   return (
     <>

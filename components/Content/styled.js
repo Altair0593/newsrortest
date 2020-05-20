@@ -89,7 +89,7 @@ export const NewsContainer = styled.div`
 export const NewsImageStyled = styled(Item.Image)`
   &&&&{
     & img{
-      height: 133px;
+      height: 110px;
+      }
     }
-  }
 `;

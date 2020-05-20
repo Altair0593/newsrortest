@@ -1,16 +1,15 @@
 import { put, call, select } from '@redux-saga/core/effects';
-import { getNewsWorker } from '../getNewsWorker';
+import { getNewsWorker, putNewsArticles } from '../getNewsWorker';
 import { getRequestSender } from '../helpers/request';
-import { putNewsInStore } from 'redux/actions/actions';
+import { putNewsInStore, changeIsLoaded, putErrorInStore, putTotalPagesInStore } from 'redux/actions/actions';
 import * as filterSelectors from 'redux/selectors/filterNews';
 import * as helpers from '../helpers/formatData';
 import { notificationSuccess, notificationError } from '../helpers/notification';
 import mockData from '__mocks__/mockNews';
 
 describe('getNewsWorker with action payload', () => {
-  const action = { payload: 'payload' };
-  const generator = getNewsWorker(action);
-  const path = 'https://newsapi.org/v2/everything?q=undefined&from=undefined&to=undefined&language=undefined&sortBy=publishedAt&page=undefined&apiKey=a34900e46a5f4b999e43deb5f1931cc6';
+  const generator = getNewsWorker();
+  const path = 'https://newsapi.org/v2/everything?q=undefined&from=undefined&to=undefined&language=undefined&sortBy=publishedAt&pageSize=10&page=undefined&apiKey=9dba764bade84feea6bc9a636baf8f6e';
 
   it('getNewsWorker select getDateTo', () => {
     const actual = generator.next();
@@ -49,42 +48,84 @@ describe('getNewsWorker with action payload', () => {
     expect(actual.value).toEqual(call(helpers.formatDatePickerTo, payload));
   });
 
+  it('getNewsWorker call changeIsLoaded', () => {
+    const payload = true;
+    const actual = generator.next();
+    expect(actual.value).toEqual(put(changeIsLoaded(payload)));
+  });
+
   it('getNewsWorker call request', () => {
     const actual = generator.next();
     expect(actual.value).toEqual(call(getRequestSender, path));
   });
 
-  it('getNewsWorker call formatPublishedDate', () => {
-    const payload = mockData;
+  it('getNewsWorker call putErrorInStore', () => {
+    const response = {
+      data: {
+        articles: mockData,
+        totalResults: 134,
+      },
+    };
+
+    const payload = '';
+    const actual = generator.next(response);
+    expect(actual.value).toEqual(put(putErrorInStore(payload)));
+  });
+
+  it('getNewsWorker call putNewsArticles', () => {
+    const response = {
+      data: {
+        articles: mockData,
+        totalResults: 134,
+      },
+    };
+
     const actual = generator.next();
-    expect(actual.value).toEqual(call(helpers.formatPublishedDate, payload));
+    expect(actual.value).toEqual(call(putNewsArticles, response.data.articles, response.data.totalResults));
+  });
+});
+
+describe('putNewsArticles', () => {
+    const response = {
+    data: {
+      articles: mockData,
+      totalResults: 134,
+    },
+  };
+
+  const { articles, totalResults } = response.data;
+
+  const generator = putNewsArticles(articles, totalResults);
+
+  it('putNewsArticles call formatArticles', () => {
+    const actual = generator.next();
+    expect(actual.value).toEqual(call(helpers.formatArticles, articles));
+  });
+
+  it('getNewsWorker call getTotalPages', () => {
+    const actual = generator.next();
+    expect(actual.value).toEqual(call(helpers.getTotalPages, totalResults));
   });
 
   it('getNewsWorker put news in store', () => {
-    const payload = { data: { articles: [] } };
-    const actual = generator.next(payload);
-    expect(actual.value).toEqual(put(putNewsInStore(payload.data.articles)));
+    const actual = generator.next();
+    expect(actual.value).toEqual(put(putNewsInStore()));
+  });
+
+  it('getNewsWorker put news in store', () => {
+    const actual = generator.next();
+    expect(actual.value).toEqual(put(putTotalPagesInStore()));
+  });
+
+  it('getNewsWorker call changeIsLoaded', () => {
+    const payload = false;
+    const actual = generator.next();
+    expect(actual.value).toEqual(put(changeIsLoaded(payload)));
   });
 
   it('getNewsWorker notification call', () => {
     const actual = generator.next();
     expect(actual.value).toEqual(call(notificationSuccess, 'News was loaded'));
-  });
-
-  it('getNewsWorker is done', () => {
-    const actual = generator.next();
-    expect(actual.done).toBe(true);
-  });
-});
-
-describe('getNewsWorker without action payload', () => {
-  const action = { type: '', payload: null };
-  const generator = getNewsWorker(action);
-
-  it('getNewsWorker call notificationError', () => {
-    generator.next();
-    const error = 'News wasn\'t loaded';
-    expect(generator.throw(new Error(error)).value).toEqual(call(notificationError, error));
   });
 
   it('getNewsWorker is done', () => {

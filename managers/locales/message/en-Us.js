@@ -17,5 +17,6 @@ export default {
     addNewCategory: 'Add news category',
     customNewsError: 'Sorry we don\'t have any news for you',
     news: '{currentCategory} news',
+    unknownAuthor: 'Unknown author',
   },
 };
