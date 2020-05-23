@@ -1,4 +1,4 @@
 export default {
   url: 'https://newsapi.org/v2/everything?q=',
-  apiKey: 'apiKey=9bd9a024ab8946c4a70443dc10d94b11',
+  apiKey: 'apiKey=60829ce26b1b445c8f4c5acb53b14f6e',
 };
