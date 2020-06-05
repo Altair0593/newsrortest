@@ -22,14 +22,15 @@ export function* getNewsWorker() {
     const response = yield call(getRequestSender, path);
 
     yield put(actions.putErrorInStore(''));
+    if (response && response.data) {
+      const { articles, totalResults } = response.data;
 
-    const { articles, totalResults } = response.data;
-
-    articles || articles.length
-      ? yield call(putNewsArticles, articles, totalResults)
-      : yield call(notificationError, 'News wasn\'t loaded');
+      articles || articles.length
+          ? yield call(putNewsArticles, articles, totalResults)
+          : yield call(notificationError, 'News wasn\'t loaded');
+    }
   } catch (err) {
-    if (err.response.data) {
+    if (err.response && err.response.data) {
       const { message } = err.response.data;
       yield put(actions.putErrorInStore(message));
     }
