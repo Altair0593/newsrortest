@@ -25,7 +25,6 @@ describe('Content render correctly', () => {
   });
 
   it('Header mount render', () => {
-    console.log(wrapper.debug())
     expect(wrapper.find(Header)).toHaveLength(1);
   });
 

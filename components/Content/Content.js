@@ -8,10 +8,11 @@ import FilterBlock from './components/FilterBlock/FilterBlock';
 import { CustomNotify } from 'libs/CustomNotify/CustomNotify';
 import { MainWrapper, MainContainer } from './styled';
 
-const Content = ({ resetStoreToDefault }) => {
+const Content = ({ getDefaultNews, resetStoreToDefault }) => {
   const themeNews = useContext(ThemeContext).newsPage;
 
   useEffect(() => {
+    getDefaultNews();
     return () => resetStoreToDefault();
   }, []);
 
@@ -40,6 +41,7 @@ const Content = ({ resetStoreToDefault }) => {
 
 Content.propTypes = {
   resetStoreToDefault: PropTypes.func.isRequired,
+  getDefaultNews: PropTypes.func.isRequired,
 };
 
 export default Content;

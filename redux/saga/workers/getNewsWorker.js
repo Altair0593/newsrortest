@@ -1,6 +1,5 @@
 import { put, call, select } from 'redux-saga/effects';
 import { notificationSuccess, notificationError } from './helpers/notification';
-import rout from 'constants/apiConst';
 import { getRequestSender } from './helpers/request';
 import * as actions from 'redux/actions/actions';
 import * as filterSelectors from 'redux/selectors/filterNews';
@@ -17,9 +16,18 @@ export function* getNewsWorker() {
     const dateFromFormatted = yield call(helpers.formatDatePickerFrom, dateFrom);
     const dateToFormatted = yield call(helpers.formatDatePickerTo, dateTo);
 
-    const path = `${rout.url}${category}&from=${dateFromFormatted}&to=${dateToFormatted}&language=${language}&sortBy=publishedAt&pageSize=10&page=${activePage}&${rout.apiKey}`;
+    const params = {
+      q: category,
+      from: dateFromFormatted,
+      to: dateToFormatted,
+      language: language,
+      sortBy: 'publishedAt',
+      pageSize: 10,
+      page: activePage,
+    };
+
     yield put(actions.changeIsLoaded(true));
-    const response = yield call(getRequestSender, path);
+    const response = yield call(getRequestSender, `/api/news-items`, params);
 
     yield put(actions.putErrorInStore(''));
     if (response && response.data) {
