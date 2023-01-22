@@ -19,7 +19,7 @@
     "axios": "^0.19.2",
     "intl": "^1.2.5",
     "isomorphic-unfetch": "^3.0.0",
-    "moment": "^2.25.3",
+    "moment": "^2.29.4",
     "next": "10.0.6",
     "next-redux-saga": "4.0.0",
     "next-redux-wrapper": "2.0.0",
